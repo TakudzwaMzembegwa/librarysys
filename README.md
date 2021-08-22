@@ -6,12 +6,12 @@ A mobile app for loaning books from the library.
 
 > [Takudzwa S Mzembegwa](https://github.com/TakudzwaMzembegwa)
 
-> [BugBuster](BugBuster github account)
+> [Luyanda Ngombane](https://github.com/LuyandaNgombane)
 
-> [BugBuster](BugBuster github account)
+> [Matyila Sango](https://github.com/MatyilaSango)
 
-> [BugBuster](BugBuster github account)
+> [BugBuster](https://github.com/MikyleJ1s)
 
-> [BugBuster](BugBuster github account)
+> [BugBuster](https://github.com/SifisoRumbu14)
 
-> [BugBuster](BugBuster github account)
+> [BugBuster](https://github.com/SIYABONGAMASANGO)
