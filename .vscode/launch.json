@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-LibrarySysApplication<backend>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.librarysys.backend.LibrarySysApplication",
+      "projectName": "backend",
+      "args": ""
+    }
+  ]
+}
