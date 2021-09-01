@@ -933,9 +933,9 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         pane.setBackground(color);
     }
     private Connection connect(){
-        final String username = "sql4432938";
-        final String password = "yKiKln5IsP";
-        final String connection = "jdbc:mysql://sql4.freemysqlhosting.net/sql4432938";
+        final String username = "sql10433996";
+        final String password = "s3Kr2BgYbp";
+        final String connection = "jdbc:mysql://sql10.freemysqlhosting.net/sql10433996";
         Connection conn = null;
         try{
             conn = DriverManager.getConnection(connection, username, password);
