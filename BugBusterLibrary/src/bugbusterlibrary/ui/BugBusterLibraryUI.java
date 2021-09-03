@@ -808,36 +808,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     }//GEN-LAST:event_RegBackTextMouseClicked
 
     private void RegSingUpTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegSingUpTextMouseClicked
-        String Fname = RegName.getText();
-        String Lname = RegLname.getText();
-        String Contacts = regContacts.getText();
-        String Username = RegUsername.getText();
-        String Password = RegPassword.getText();
-        String Re_enter_password = RegReEnterpassword.getText();
-        
-        Timestamp tsmp = new Timestamp(new Date().getTime());
-        
-        if(Fname!=null && Lname!=null &&Contacts!=null ){
-            if(Password!=null){
-                try {
-                    Statement ps = connect().createStatement();
-                    //String query = "INSERT INTO `user`(`Fname`, `Pass`, `Date`) VALUES ('"+Fname+"','"+Password+"','"+tsmp+"')";
-                    String query = "INSERT INTO `user`(`Fname`, `Lname`, `Username`, `Pass`, `Date`) VALUES ('"+Fname+"','"+Lname+"','"+Username+"','"+Password+"','"+tsmp+"')";
-                    ps.execute(query);
-                    JOptionPane.showMessageDialog(null, " registered!");
-                    RegistrationPane.setVisible(false);
-                    LogInPane.setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(BugBusterLibraryUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Passwords don't match!");
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Enter all fields!");
-        }
+        signUp();
     }//GEN-LAST:event_RegSingUpTextMouseClicked
 
     private void LogInbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInbuttonMouseEntered
@@ -889,29 +860,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     }//GEN-LAST:event_AboutOptionTextMouseExited
 
     private void LogInbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInbuttonMouseClicked
-        String Logname = LogInUsername.getText();
-        String Logpass = LogInPassword.getText();
-        
-        String query = "SELECT * FROM `user` WHERE `Username` =? AND `Pass` =?";
-        
-        try {
-            PreparedStatement stmt = connect().prepareStatement(query);
-            stmt.setString(1, Logname);
-            stmt.setString(2, Logpass);
-            ResultSet rs = stmt.executeQuery();
-            
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null, "Logging in!");
-                LogInPane.setVisible(false);
-                MenuPane.setVisible(true);
-                UserLoggedInName.setText(Logname);
-            }else{
-                JOptionPane.showMessageDialog(null,"Incorrect username or password!");
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(BugBusterLibraryUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        logIn();
     }//GEN-LAST:event_LogInbuttonMouseClicked
 
     private void LogOutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutButtonMouseClicked
@@ -944,6 +893,63 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return conn;
+    }
+    public void signUp(){
+        String Fname = RegName.getText();
+        String Lname = RegLname.getText();
+        String Contacts = regContacts.getText();
+        String Username = RegUsername.getText();
+        String Password = RegPassword.getText();
+        String Re_enter_password = RegReEnterpassword.getText();
+        
+        Timestamp tsmp = new Timestamp(new Date().getTime());
+        
+        if(Fname!=null && Lname!=null &&Contacts!=null ){
+            if(Password!=null){
+                try {
+                    Statement ps = connect().createStatement();
+                    //String query = "INSERT INTO `user`(`Fname`, `Pass`, `Date`) VALUES ('"+Fname+"','"+Password+"','"+tsmp+"')";
+                    String query = "INSERT INTO `user`(`Fname`, `Lname`, `Username`, `Pass`, `Date`) VALUES ('"+Fname+"','"+Lname+"','"+Username+"','"+Password+"','"+tsmp+"')";
+                    ps.execute(query);
+                    JOptionPane.showMessageDialog(null, " registered!");
+                    RegistrationPane.setVisible(false);
+                    LogInPane.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(BugBusterLibraryUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Passwords don't match!");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Enter all fields!");
+        }  
+    }
+    public void logIn(){
+        String Logname = LogInUsername.getText();
+        String Logpass = LogInPassword.getText();
+        
+        String query = "SELECT * FROM `user` WHERE `Username` =? AND `Pass` =?";
+        
+        try {
+            PreparedStatement stmt = connect().prepareStatement(query);
+            stmt.setString(1, Logname);
+            stmt.setString(2, Logpass);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Logging in!");
+                LogInPane.setVisible(false);
+                MenuPane.setVisible(true);
+                UserLoggedInName.setText(Logname);
+            }else{
+                JOptionPane.showMessageDialog(null,"Incorrect username or password!");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BugBusterLibraryUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
