@@ -1129,7 +1129,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                 MenuPane.setVisible(true);
                 UserLoggedInName.setText(Logname);
             }
-        }catch(HeadlessException e){
+        }catch(NoResultException e){
             JOptionPane.showMessageDialog(null, "No such user!");
         }
     }
