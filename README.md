@@ -1,6 +1,6 @@
 # LibrarySys
 
-A desktop library app for loaning books from the library.
+A desktop library app for loaning books.
 
 ## `Project contributors:`
 
