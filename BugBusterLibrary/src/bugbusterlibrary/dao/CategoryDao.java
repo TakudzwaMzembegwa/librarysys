@@ -39,6 +39,5 @@ public class CategoryDao {
         em.persist(category);
         em.getTransaction().commit();
         em.clear();
-    }
-    
+    }  
 }
