@@ -39,6 +39,5 @@ public class BookDao {
         em.persist(book);
         em.getTransaction().commit();
         em.clear();   
-    }
-    
+    } 
 }
