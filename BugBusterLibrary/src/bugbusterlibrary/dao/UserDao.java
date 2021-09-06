@@ -13,6 +13,7 @@ import javax.persistence.Persistence;
 /**
  *
  * @author Takudzwa Mzembegwa
+ * @author Sango
  */
 public class UserDao {
     
