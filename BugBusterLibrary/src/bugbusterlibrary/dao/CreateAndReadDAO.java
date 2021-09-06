@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bugbusterlibrary.DAO;
+package bugbusterlibrary.dao;
 
 import bugbusterlibrary.entity.Book;
 import bugbusterlibrary.entity.Category;
