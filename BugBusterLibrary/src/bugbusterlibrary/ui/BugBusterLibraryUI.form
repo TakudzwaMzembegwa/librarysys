@@ -1131,7 +1131,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="Books">
+                <Container class="javax.swing.JPanel" name="FacultyAndDep">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="66" red="66" type="rgb"/>
@@ -1149,9 +1149,9 @@
                           <EmptySpace min="0" pref="629" max="32767" attributes="0"/>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="Categories" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Faculty" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="BookList" max="32767" attributes="0"/>
+                                  <Component id="Department" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1160,14 +1160,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="468" max="32767" attributes="0"/>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                              <Component id="Categories" alignment="0" max="32767" attributes="0"/>
-                              <Component id="BookList" alignment="1" max="32767" attributes="0"/>
+                              <Component id="Faculty" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Department" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="Categories">
+                    <Container class="javax.swing.JPanel" name="Faculty">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1180,37 +1180,62 @@
                               <Component id="jSeparator4" alignment="1" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
-                                  <Component id="Category_Heading" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Faculty_heading" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="121" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="FacultyScrollPanel" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Category_Heading" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Faculty_heading" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jSeparator4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="FacultyScrollPanel" min="-2" pref="405" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="Category_Heading">
+                        <Component class="javax.swing.JLabel" name="Faculty_heading">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Times New Roman" size="22" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Categories"/>
+                            <Property name="text" type="java.lang.String" value="Faculty"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JSeparator" name="jSeparator4">
                         </Component>
+                        <Container class="javax.swing.JScrollPane" name="FacultyScrollPanel">
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JList" name="FacultyList">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Times New Roman" size="18" style="0"/>
+                                </Property>
+                                <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+                                  <StringArray count="0"/>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="FacultyListMouseClicked"/>
+                              </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                              </AuxValues>
+                            </Component>
+                          </SubComponents>
+                        </Container>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JPanel" name="BookList">
+                    <Container class="javax.swing.JPanel" name="Department">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1221,11 +1246,11 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="116" max="32767" attributes="0"/>
-                                  <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="122" max="32767" attributes="0"/>
+                                  <Component id="Department_heading" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="DepListScrollPanel" alignment="0" max="32767" attributes="0"/>
                               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                   <Component id="jSeparator5" alignment="0" pref="299" max="32767" attributes="0"/>
                               </Group>
@@ -1235,9 +1260,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Department_heading" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="DepListScrollPanel" min="-2" pref="408" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" pref="424" max="32767" attributes="0"/>
                               </Group>
                               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -1252,37 +1278,25 @@
                       <SubComponents>
                         <Component class="javax.swing.JSeparator" name="jSeparator5">
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel36">
+                        <Component class="javax.swing.JLabel" name="Department_heading">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Times New Roman" size="22" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Book list"/>
+                            <Property name="text" type="java.lang.String" value="Department"/>
                           </Properties>
                         </Component>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-                          <AuxValues>
-                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                          </AuxValues>
+                        <Container class="javax.swing.JScrollPane" name="DepListScrollPanel">
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JList" name="jList1">
+                            <Component class="javax.swing.JList" name="ListOfDep">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Times New Roman" size="20" style="0"/>
+                                  <Font name="Times New Roman" size="18" style="0"/>
                                 </Property>
                                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                                  <StringArray count="5">
-                                    <StringItem index="0" value="Item 1"/>
-                                    <StringItem index="1" value="Item 2"/>
-                                    <StringItem index="2" value="Item 3"/>
-                                    <StringItem index="3" value="Item 4"/>
-                                    <StringItem index="4" value="Item 5"/>
-                                  </StringArray>
-                                </Property>
-                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                                  <Color id="Hand Cursor"/>
+                                  <StringArray count="0"/>
                                 </Property>
                               </Properties>
                               <AuxValues>
@@ -1295,7 +1309,7 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="SelectedBook">
+                <Container class="javax.swing.JPanel" name="Books">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card3"/>
@@ -1306,20 +1320,40 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="BookInfo" min="-2" max="-2" attributes="0"/>
+                              <Component id="ListOfBoos" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Reciept" max="32767" attributes="0"/>
+                              <Component id="BookInfo" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="BookInfo" max="32767" attributes="0"/>
-                          <Component id="Reciept" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ListOfBoos" max="32767" attributes="0"/>
+                          <Component id="BookInfo" alignment="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
+                    <Container class="javax.swing.JPanel" name="ListOfBoos">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                      </Properties>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <EmptySpace min="0" pref="274" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <EmptySpace min="0" pref="468" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                    </Container>
                     <Container class="javax.swing.JPanel" name="BookInfo">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1330,27 +1364,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="319" max="32767" attributes="0"/>
-                          </Group>
-                        </DimensionLayout>
-                        <DimensionLayout dim="1">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="468" max="32767" attributes="0"/>
-                          </Group>
-                        </DimensionLayout>
-                      </Layout>
-                    </Container>
-                    <Container class="javax.swing.JPanel" name="Reciept">
-                      <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                      </Properties>
-
-                      <Layout>
-                        <DimensionLayout dim="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="304" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="349" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
