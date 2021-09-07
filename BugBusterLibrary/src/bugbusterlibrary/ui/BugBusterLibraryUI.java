@@ -5,6 +5,7 @@
  */
 package bugbusterlibrary.ui;
 
+import bugbusterlibrary.dao.CategoryDao;
 import java.awt.Color;
 import java.sql.*;
 import java.util.Date;
@@ -14,9 +15,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import bugbusterlibrary.entity.*;
-import java.awt.HeadlessException;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 /**
  *
@@ -110,18 +112,20 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         ContentPane = new javax.swing.JPanel();
         BooksCategoryContent = new javax.swing.JPanel();
-        Books = new javax.swing.JPanel();
-        Categories = new javax.swing.JPanel();
-        Category_Heading = new javax.swing.JLabel();
+        FacultyAndDep = new javax.swing.JPanel();
+        Faculty = new javax.swing.JPanel();
+        Faculty_heading = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        BookList = new javax.swing.JPanel();
+        FacultyScrollPanel = new javax.swing.JScrollPane();
+        FacultyList = new javax.swing.JList<>();
+        Department = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
-        jLabel36 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        SelectedBook = new javax.swing.JPanel();
+        Department_heading = new javax.swing.JLabel();
+        DepListScrollPanel = new javax.swing.JScrollPane();
+        ListOfDep = new javax.swing.JList<>();
+        Books = new javax.swing.JPanel();
+        ListOfBoos = new javax.swing.JPanel();
         BookInfo = new javax.swing.JPanel();
-        Reciept = new javax.swing.JPanel();
         MyBooksContent = new javax.swing.JPanel();
         AboutContent = new javax.swing.JPanel();
 
@@ -781,93 +785,112 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         BooksCategoryContent.setBackground(new java.awt.Color(102, 102, 102));
         BooksCategoryContent.setLayout(new java.awt.CardLayout());
 
-        Books.setBackground(new java.awt.Color(102, 102, 102));
+        FacultyAndDep.setBackground(new java.awt.Color(102, 102, 102));
 
-        Categories.setBackground(new java.awt.Color(255, 255, 255));
+        Faculty.setBackground(new java.awt.Color(255, 255, 255));
 
-        Category_Heading.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Category_Heading.setText("Categories");
+        Faculty_heading.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Faculty_heading.setText("Faculty");
 
-        javax.swing.GroupLayout CategoriesLayout = new javax.swing.GroupLayout(Categories);
-        Categories.setLayout(CategoriesLayout);
-        CategoriesLayout.setHorizontalGroup(
-            CategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        FacultyList.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        FacultyList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FacultyListMouseClicked(evt);
+            }
+        });
+        FacultyScrollPanel.setViewportView(FacultyList);
+
+        javax.swing.GroupLayout FacultyLayout = new javax.swing.GroupLayout(Faculty);
+        Faculty.setLayout(FacultyLayout);
+        FacultyLayout.setHorizontalGroup(
+            FacultyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(CategoriesLayout.createSequentialGroup()
+            .addGroup(FacultyLayout.createSequentialGroup()
                 .addGap(106, 106, 106)
-                .addComponent(Category_Heading)
+                .addComponent(Faculty_heading)
                 .addContainerGap(121, Short.MAX_VALUE))
+            .addComponent(FacultyScrollPanel)
         );
-        CategoriesLayout.setVerticalGroup(
-            CategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CategoriesLayout.createSequentialGroup()
+        FacultyLayout.setVerticalGroup(
+            FacultyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FacultyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Category_Heading)
+                .addComponent(Faculty_heading)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FacultyScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        BookList.setBackground(new java.awt.Color(255, 255, 255));
+        Department.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel36.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        jLabel36.setText("Book list");
+        Department_heading.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Department_heading.setText("Department");
 
-        jList1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jScrollPane1.setViewportView(jList1);
+        ListOfDep.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        DepListScrollPanel.setViewportView(ListOfDep);
 
-        javax.swing.GroupLayout BookListLayout = new javax.swing.GroupLayout(BookList);
-        BookList.setLayout(BookListLayout);
-        BookListLayout.setHorizontalGroup(
-            BookListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BookListLayout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(jLabel36)
+        javax.swing.GroupLayout DepartmentLayout = new javax.swing.GroupLayout(Department);
+        Department.setLayout(DepartmentLayout);
+        DepartmentLayout.setHorizontalGroup(
+            DepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DepartmentLayout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addComponent(Department_heading)
                 .addGap(106, 106, 106))
-            .addComponent(jScrollPane1)
-            .addGroup(BookListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(DepListScrollPanel)
+            .addGroup(DepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
         );
-        BookListLayout.setVerticalGroup(
-            BookListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BookListLayout.createSequentialGroup()
+        DepartmentLayout.setVerticalGroup(
+            DepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DepartmentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel36)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
-            .addGroup(BookListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(BookListLayout.createSequentialGroup()
+                .addComponent(Department_heading)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(DepListScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(DepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DepartmentLayout.createSequentialGroup()
                     .addGap(44, 44, 44)
                     .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(402, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout BooksLayout = new javax.swing.GroupLayout(Books);
-        Books.setLayout(BooksLayout);
-        BooksLayout.setHorizontalGroup(
-            BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout FacultyAndDepLayout = new javax.swing.GroupLayout(FacultyAndDep);
+        FacultyAndDep.setLayout(FacultyAndDepLayout);
+        FacultyAndDepLayout.setHorizontalGroup(
+            FacultyAndDepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 629, Short.MAX_VALUE)
-            .addGroup(BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(BooksLayout.createSequentialGroup()
-                    .addComponent(Categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(FacultyAndDepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(FacultyAndDepLayout.createSequentialGroup()
+                    .addComponent(Faculty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(BookList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(Department, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        BooksLayout.setVerticalGroup(
-            BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        FacultyAndDepLayout.setVerticalGroup(
+            FacultyAndDepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 468, Short.MAX_VALUE)
-            .addGroup(BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Categories, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BookList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(FacultyAndDepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(Faculty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Department, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        BooksCategoryContent.add(Books, "card2");
+        BooksCategoryContent.add(FacultyAndDep, "card2");
+
+        ListOfBoos.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout ListOfBoosLayout = new javax.swing.GroupLayout(ListOfBoos);
+        ListOfBoos.setLayout(ListOfBoosLayout);
+        ListOfBoosLayout.setHorizontalGroup(
+            ListOfBoosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 274, Short.MAX_VALUE)
+        );
+        ListOfBoosLayout.setVerticalGroup(
+            ListOfBoosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 468, Short.MAX_VALUE)
+        );
 
         BookInfo.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -875,42 +898,29 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         BookInfo.setLayout(BookInfoLayout);
         BookInfoLayout.setHorizontalGroup(
             BookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 319, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
         );
         BookInfoLayout.setVerticalGroup(
             BookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
-        );
-
-        Reciept.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout RecieptLayout = new javax.swing.GroupLayout(Reciept);
-        Reciept.setLayout(RecieptLayout);
-        RecieptLayout.setHorizontalGroup(
-            RecieptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 304, Short.MAX_VALUE)
-        );
-        RecieptLayout.setVerticalGroup(
-            RecieptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout SelectedBookLayout = new javax.swing.GroupLayout(SelectedBook);
-        SelectedBook.setLayout(SelectedBookLayout);
-        SelectedBookLayout.setHorizontalGroup(
-            SelectedBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SelectedBookLayout.createSequentialGroup()
-                .addComponent(BookInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout BooksLayout = new javax.swing.GroupLayout(Books);
+        Books.setLayout(BooksLayout);
+        BooksLayout.setHorizontalGroup(
+            BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BooksLayout.createSequentialGroup()
+                .addComponent(ListOfBoos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Reciept, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BookInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        SelectedBookLayout.setVerticalGroup(
-            SelectedBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        BooksLayout.setVerticalGroup(
+            BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ListOfBoos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BookInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Reciept, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        BooksCategoryContent.add(SelectedBook, "card3");
+        BooksCategoryContent.add(Books, "card3");
 
         ContentPane.add(BooksCategoryContent, "card2");
 
@@ -1059,8 +1069,11 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private void BooksOptionTextMouseClicked(java.awt.event.MouseEvent evt) {                                             
         MyBooksContent.setVisible(false);
         AboutContent.setVisible(false);
-        SelectedBook.setVisible(false);
+        Books.setVisible(false);
         BooksCategoryContent.setVisible(true);
+        FacultyAndDep.setVisible(true);
+        ListOfDep.setModel(new DefaultListModel());
+        showFacultyList();   
     }                                            
 
     private void MyBooksOptionTextMouseClicked(java.awt.event.MouseEvent evt) {                                               
@@ -1074,6 +1087,12 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         MyBooksContent.setVisible(false);
         AboutContent.setVisible(true);
     }                                            
+
+    private void FacultyListMouseClicked(java.awt.event.MouseEvent evt) {                                         
+        String selectedValue = FacultyList.getSelectedValue();
+        showDepList(selectedValue);
+        
+    }                                        
     
     public void ButtonEnteredColor(JPanel pane, Color color){
         pane.setBackground(color);
@@ -1134,6 +1153,26 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         }
     }
     
+    CategoryDao categoryDao = new CategoryDao();
+    List<Category> categoryList = categoryDao.findAllCategories();
+    public void showFacultyList(){ 
+        DefaultListModel DLM = new DefaultListModel();
+        for(int i=0; i<categoryList.size(); i++){
+            DLM.addElement(categoryList.get(i).getFaculty());
+        }
+        FacultyList.setModel(DLM);  
+    }
+    
+    public void showDepList(String selectedFaculty){
+        DefaultListModel DLM = new DefaultListModel();
+        for(int i=0; i<categoryList.size(); i++){
+            if(categoryList.get(i).getFaculty().equals(selectedFaculty)){
+                DLM.addElement(categoryList.get(i).getDepartment());
+            }
+        }
+        ListOfDep.setModel(DLM);
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -1175,17 +1214,24 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JPanel AboutOption;
     private javax.swing.JLabel AboutOptionText;
     private javax.swing.JPanel BookInfo;
-    private javax.swing.JPanel BookList;
     private javax.swing.JPanel BookOption;
     private javax.swing.JPanel Books;
     private javax.swing.JPanel BooksCategoryContent;
     private javax.swing.JLabel BooksOptionText;
-    private javax.swing.JPanel Categories;
-    private javax.swing.JLabel Category_Heading;
     private javax.swing.JPanel ContentPane;
+    private javax.swing.JScrollPane DepListScrollPanel;
+    private javax.swing.JPanel Department;
+    private javax.swing.JLabel Department_heading;
+    private javax.swing.JPanel Faculty;
+    private javax.swing.JPanel FacultyAndDep;
+    private javax.swing.JList<String> FacultyList;
+    private javax.swing.JScrollPane FacultyScrollPanel;
+    private javax.swing.JLabel Faculty_heading;
     private javax.swing.JPanel HeadNamePane2;
     private javax.swing.JPanel HeadNamePane3;
     private javax.swing.JPanel HeadNamePane4;
+    private javax.swing.JPanel ListOfBoos;
+    private javax.swing.JList<String> ListOfDep;
     private javax.swing.JPanel LogInButtonPane;
     private javax.swing.JPanel LogInPane;
     private javax.swing.JPasswordField LogInPassword;
@@ -1196,7 +1242,6 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JPanel MyBooksContent;
     private javax.swing.JPanel MyBooksOption;
     private javax.swing.JLabel MyBooksOptionText;
-    private javax.swing.JPanel Reciept;
     private javax.swing.JPanel RegBack;
     private javax.swing.JLabel RegBackText;
     private javax.swing.JTextField RegLname;
@@ -1207,7 +1252,6 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JLabel RegSingUpText;
     private javax.swing.JTextField RegUsername;
     private javax.swing.JPanel RegistrationPane;
-    private javax.swing.JPanel SelectedBook;
     private javax.swing.JPanel SideOptionPane;
     private javax.swing.JLabel ToRegister;
     private javax.swing.JLabel UserLoggedInName;
@@ -1232,17 +1276,14 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
