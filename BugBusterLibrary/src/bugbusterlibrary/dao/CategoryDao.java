@@ -26,12 +26,11 @@ public class CategoryDao {
     } 
     
     //Add a category in the category list
-    public void PushInCategory(Integer categoryId, String faculty, String department, String module) {
+    public void PushInCategory(Integer categoryId, String faculty, String department) {
         Category category = new Category();
         category.setCategoryId(categoryId);
         category.setFaculty(faculty);
         category.setDepartment(department);
-        category.setModule(module);
         
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
         EntityManager em=emf.createEntityManager();
