@@ -31,8 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
     , @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId")
     , @NamedQuery(name = "Category.findByFaculty", query = "SELECT c FROM Category c WHERE c.faculty = :faculty")
-    , @NamedQuery(name = "Category.findByDepartment", query = "SELECT c FROM Category c WHERE c.department = :department")
-    , @NamedQuery(name = "Category.findByModule", query = "SELECT c FROM Category c WHERE c.module = :module")})
+    , @NamedQuery(name = "Category.findByDepartment", query = "SELECT c FROM Category c WHERE c.department = :department")})
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,8 +43,6 @@ public class Category implements Serializable {
     private String faculty;
     @Column(name = "department")
     private String department;
-    @Column(name = "module")
-    private String module;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
     private List<Book> bookList;
 
@@ -80,14 +77,6 @@ public class Category implements Serializable {
         this.department = department;
     }
 
-    public String getModule() {
-        return module;
-    }
-
-    public void setModule(String module) {
-        this.module = module;
-    }
-
     @XmlTransient
     public List<Book> getBookList() {
         return bookList;
@@ -103,7 +92,6 @@ public class Category implements Serializable {
         hash = 79 * hash + Objects.hashCode(this.categoryId);
         hash = 79 * hash + Objects.hashCode(this.faculty);
         hash = 79 * hash + Objects.hashCode(this.department);
-        hash = 79 * hash + Objects.hashCode(this.module);
         return hash;
     }
 
@@ -125,16 +113,11 @@ public class Category implements Serializable {
         if (!Objects.equals(this.department, other.department)) {
             return false;
         }
-        if (!Objects.equals(this.module, other.module)) {
-            return false;
-        }
         if (!Objects.equals(this.categoryId, other.categoryId)) {
             return false;
         }
         return true;
     }
-
-    
 
     @Override
     public String toString() {
