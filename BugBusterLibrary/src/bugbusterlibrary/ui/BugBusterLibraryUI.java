@@ -1158,7 +1158,9 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     public void showFacultyList(){ 
         DefaultListModel DLM = new DefaultListModel();
         for(int i=0; i<categoryList.size(); i++){
-            DLM.addElement(categoryList.get(i).getFaculty());
+            if(!DLM.contains(categoryList.get(i).getFaculty())){
+                DLM.addElement(categoryList.get(i).getFaculty());
+            }
         }
         FacultyList.setModel(DLM);  
     }
