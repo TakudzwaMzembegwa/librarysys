@@ -6,6 +6,7 @@
 package bugbusterlibrary.ui;
 
 import bugbusterlibrary.dao.CategoryDao;
+import bugbusterlibrary.dao.UserDao;
 import java.awt.Color;
 import java.sql.*;
 import java.util.Date;
@@ -1141,7 +1142,8 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         String Logname = LogInUsername.getText();
         String Logpass = LogInPassword.getText();
         try{
-            User user = em.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class).setParameter("username", Logname).getSingleResult();
+            UserDao userDao = new UserDao();
+            User user = userDao.findByUsername(Logname);
             if(user.getUsername().equals(Logname) && user.getPassword().equals(Logpass)){
                 JOptionPane.showMessageDialog(null, "Logging in!");
                 LogInPane.setVisible(false);
@@ -1154,7 +1156,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     }
     
     CategoryDao categoryDao = new CategoryDao();
-    List<Category> categoryList = categoryDao.findAllCategories();
+    List<Category> categoryList = categoryDao.findAll();
     public void showFacultyList(){ 
         DefaultListModel DLM = new DefaultListModel();
         for(int i=0; i<categoryList.size(); i++){
