@@ -11,6 +11,8 @@ import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,14 +34,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Receipt.findAll", query = "SELECT r FROM Receipt r")
     , @NamedQuery(name = "Receipt.findByReceiptId", query = "SELECT r FROM Receipt r WHERE r.receiptId = :receiptId")
     , @NamedQuery(name = "Receipt.findByDateLoaned", query = "SELECT r FROM Receipt r WHERE r.dateLoaned = :dateLoaned")
-    , @NamedQuery(name = "Receipt.findByDateReturned", query = "SELECT r FROM Receipt r WHERE r.dateReturned = :dateReturned")
-    , @NamedQuery(name = "Receipt.findByFineDue", query = "SELECT r FROM Receipt r WHERE r.fineDue = :fineDue")})
+    , @NamedQuery(name = "Receipt.findByDateReturned", query = "SELECT r FROM Receipt r WHERE r.dateReturned = :dateReturned")})
 public class Receipt implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "receipt_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long receiptId;
     @Basic(optional = false)
     @Column(name = "date_loaned")
@@ -49,9 +50,6 @@ public class Receipt implements Serializable {
     @Column(name = "date_returned")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateReturned;
-    @Basic(optional = false)
-    @Column(name = "fine_due")
-    private float fineDue;
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
     private User userId;
@@ -70,7 +68,6 @@ public class Receipt implements Serializable {
         this.receiptId = receiptId;
         this.dateLoaned = dateLoaned;
         this.dateReturned = dateReturned;
-        this.fineDue = fineDue;
     }
 
     public Long getReceiptId() {
@@ -96,15 +93,6 @@ public class Receipt implements Serializable {
     public void setDateReturned(Date dateReturned) {
         this.dateReturned = dateReturned;
     }
-
-    public float getFineDue() {
-        return fineDue;
-    }
-
-    public void setFineDue(float fineDue) {
-        this.fineDue = fineDue;
-    }
-
     public User getUserId() {
         return userId;
     }
@@ -127,7 +115,6 @@ public class Receipt implements Serializable {
         hash = 83 * hash + Objects.hashCode(this.receiptId);
         hash = 83 * hash + Objects.hashCode(this.dateLoaned);
         hash = 83 * hash + Objects.hashCode(this.dateReturned);
-        hash = 83 * hash + Float.floatToIntBits(this.fineDue);
         hash = 83 * hash + Objects.hashCode(this.userId);
         hash = 83 * hash + Objects.hashCode(this.bookId);
         return hash;
@@ -145,9 +132,6 @@ public class Receipt implements Serializable {
             return false;
         }
         final Receipt other = (Receipt) obj;
-        if (Float.floatToIntBits(this.fineDue) != Float.floatToIntBits(other.fineDue)) {
-            return false;
-        }
         if (!Objects.equals(this.receiptId, other.receiptId)) {
             return false;
         }
