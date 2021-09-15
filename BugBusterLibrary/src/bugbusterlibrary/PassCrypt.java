@@ -24,8 +24,13 @@ public class PassCrypt {
     private PassCrypt() {
     }
 
+    /**
+     * Uses PBKDF2WithHmacSHA1 to encrypt a given password
+     * 
+     * @param password the password to be encrypted
+     * @return the encrypted password as a String
+     */
     public static String hash(String password) {
-
         char[] chars = password.toCharArray();
         byte[] salt;
         try {
@@ -64,6 +69,12 @@ public class PassCrypt {
         }
     }
 
+    /**
+     * 
+     * @param originalPassword the password before it was encrypted
+     * @param storedPassword   the encrypted password
+     * @return boolean: true if the passwords were the same before else false
+     */
     public static boolean validate(String originalPassword, String storedPassword) {
         String[] parts = storedPassword.split(":");
         if (parts.length != 2)
