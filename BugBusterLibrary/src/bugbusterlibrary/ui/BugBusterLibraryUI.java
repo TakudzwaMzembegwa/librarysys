@@ -5,6 +5,7 @@
  */
 package bugbusterlibrary.ui;
 
+import bugbusterlibrary.PassCrypt;
 import bugbusterlibrary.dao.BookDao;
 import bugbusterlibrary.dao.CategoryDao;
 import bugbusterlibrary.dao.UserDao;
@@ -1812,7 +1813,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         System.out.println(Fname);
         if(!"".equals(Fname) && !"".equals(Lname) && !"".equals(Username) && !"".equals(Password) && !"".equals(role)){
             if(Password!=null){
-                User newUser = new User(Id, Username, Password, email, role, new Date());
+                User newUser = new User(Id, Username, PassCrypt.hash(Password), email, role, new Date());
                 em.getTransaction().begin();
                 em.persist(newUser);
                 em.getTransaction().commit();
@@ -1843,7 +1844,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         try{
             UserDao userDao = new UserDao();
             User user = userDao.findByUsername(Logname);
-            if(user.getUsername().equals(Logname) && user.getPassword().equals(Logpass) && user.getRole().equals(role)){
+            if(user.getUsername().equals(Logname) && PassCrypt.validate(Logpass, user.getPassword()) && user.getRole().equals(role)){
                 JOptionPane.showMessageDialog(null, "Logging in!");
                 LogInPane.setVisible(false);
                 if("student".equals(role)){                  
