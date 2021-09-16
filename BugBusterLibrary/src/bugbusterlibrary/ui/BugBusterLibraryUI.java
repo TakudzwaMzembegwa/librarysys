@@ -5,6 +5,7 @@
  */
 package bugbusterlibrary.ui;
 
+import bugbusterlibrary.LoadDatabase;
 import bugbusterlibrary.PassCrypt;
 import bugbusterlibrary.dao.BookDao;
 import bugbusterlibrary.dao.CategoryDao;
@@ -32,8 +33,6 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     
     public static final String UWC_EDOMAIN = "@myuwc.ac.za";
     
-    EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
-    EntityManager em=emf.createEntityManager();
     /**
      * Creates new form BugBusterLibraryUI
      */
@@ -1916,8 +1915,8 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     }
  
     private void signUp(){
-        String Fname = RegName.getText();
-        String Lname = RegLname.getText();
+        String firstName = RegName.getText();
+        String lastName = RegLname.getText();
         String email = regEmail.getText();
         String role = "";
         if(regRoleStudent.isSelected()){
@@ -1929,16 +1928,13 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         String Username = RegUsername.getText();
         String Password = RegPassword.getText();
         String Re_enter_password = RegReEnterpassword.getText();
-        if(!"".equals(Fname) && !"".equals(Lname) && !"".equals(Username) && !"".equals(Password) && !"".equals(role)){
+        if(!"".equals(firstName) && !"".equals(lastName) && !"".equals(Username) && !"".equals(Password) && !"".equals(role)){
             if(!email.contains(UWC_EDOMAIN)){
                 JOptionPane.showMessageDialog(null, "Email domain not allowed or invalid");
             }
             else if(Password!=null){
-                User newUser = new User(Username, PassCrypt.hash(Password), email, role, new Date());
-                em.getTransaction().begin();
-                em.persist(newUser);
-                em.getTransaction().commit();
-                em.clear();
+                UserDao userDao = new UserDao();
+                userDao.persist(new User(Username, firstName, lastName, PassCrypt.hash(Password), email, role, new Date()));
                 JOptionPane.showMessageDialog(null, "Registered!");
                 RegistrationPane.setVisible(false);
                 LogInPane.setVisible(true);
