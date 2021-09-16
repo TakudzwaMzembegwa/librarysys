@@ -71,6 +71,8 @@ public class User implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateJoined;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private List<Book> reservedBooks;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Receipt> receiptList;
 
     public User() {
@@ -153,6 +155,15 @@ public class User implements Serializable {
 
     public void setDateJoined(Date dateJoined) {
         this.dateJoined = dateJoined;
+    }
+
+    @XmlTransient
+    public List<Book> getReservedBooks() {
+        return reservedBooks;
+    }
+
+    public void setReservedBooks(List<Book> reservedBooks) {
+        this.reservedBooks = reservedBooks;
     }
 
     @XmlTransient

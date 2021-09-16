@@ -27,15 +27,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "Book", catalog = "sql10433996", schema = "")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b")
-    , @NamedQuery(name = "Book.findByBookId", query = "SELECT b FROM Book b WHERE b.bookId = :bookId")
-    , @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title")
-    , @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author")
-    , @NamedQuery(name = "Book.findByIsbn", query = "SELECT b FROM Book b WHERE b.isbn = :isbn")
-    , @NamedQuery(name = "Book.findByEdition", query = "SELECT b FROM Book b WHERE b.edition = :edition")
-    , @NamedQuery(name = "Book.findByAvailability", query = "SELECT b FROM Book b WHERE b.availability = :availability")
-    , @NamedQuery(name = "Book.findByImage", query = "SELECT b FROM Book b WHERE b.image = :image")})
+@NamedQueries({ @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
+        @NamedQuery(name = "Book.findByBookId", query = "SELECT b FROM Book b WHERE b.bookId = :bookId"),
+        @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
+        @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
+        @NamedQuery(name = "Book.findByIsbn", query = "SELECT b FROM Book b WHERE b.isbn = :isbn"),
+        @NamedQuery(name = "Book.findByEdition", query = "SELECT b FROM Book b WHERE b.edition = :edition"),
+        @NamedQuery(name = "Book.findByAvailability", query = "SELECT b FROM Book b WHERE b.availability = :availability"),
+        @NamedQuery(name = "Book.findByImage", query = "SELECT b FROM Book b WHERE b.image = :image") })
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,6 +63,9 @@ public class Book implements Serializable {
     private String image;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
     private List<Receipt> receiptList;
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @ManyToOne(optional = true)
+    private User userId;
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     @ManyToOne(optional = false)
     private Category categoryId;
@@ -156,6 +158,14 @@ public class Book implements Serializable {
         this.receiptList = receiptList;
     }
 
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
     public Category getCategoryId() {
         return categoryId;
     }
@@ -213,5 +223,5 @@ public class Book implements Serializable {
     public String toString() {
         return "bugbusterlibrary.entity.Book[ bookId=" + bookId + " ]";
     }
-    
+
 }
