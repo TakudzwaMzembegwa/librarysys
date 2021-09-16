@@ -55,26 +55,31 @@ public class ReceiptDao {
         em.clear();
     }
     
-     public void deleteReceipt(Long receiptID) 
-   {
-        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-        Receipt receipt = em.find(Receipt.class, receiptId);
+    // function to delete a receipt from the database. 
+    public void deleteReceipt(Long receiptID) 
+    {
+       EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+       Receipt receipt = em.find(Receipt.class, receiptId); // search the database for a receipt with a specific ID. 
         
-       if (receipt != null) {
+       if (receipt != null) // see if the receipt ID exists.  
+       {
             em.getTransaction().begin();
-            em.remove(receipt);
+            em.remove(receipt); // delete the receipt. 
             em.getTransaction().commit();
         }
     }
 
+    // funtion to update a receipt. 
     public void updateReceipt(Receipt myReceipt, Book bookID, User userID)
     {
+        // set the new values of the receipt. 
     	Receipt receipt = myReceipt;
     	receipt.setBookId(bookID);
-    	receipt.setUserId(userID); 
+    	receipt.setUserId(userID);
+        
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        em.merge(receipt);
+        em.merge(receipt); // update the receipt. 
         em.getTransaction().commit();
     }
 }
