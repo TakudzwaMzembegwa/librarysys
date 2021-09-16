@@ -70,7 +70,7 @@ public class DeleteUpdateDOA{
         }
     }
 
-    public void updateReceipt(Receipt myReceipt, Long bookID, Long userID)
+    public void updateReceipt(Receipt myReceipt, Book bookID, User userID)
     {
     	Receipt receipt = myReceipt;
     	receipt.setBookId(bookID);
@@ -78,6 +78,28 @@ public class DeleteUpdateDOA{
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.merge(receipt);
+        em.getTransaction().commit();
+    }
+    
+   public void deleteUser(Long userID) 
+   {
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        User user = em.find(User.class, userID);
+        
+       if (user != null) {
+            em.getTransaction().begin();
+            em.remove(user);
+            em.getTransaction().commit();
+        }
+    }
+
+    public void updateUser(User myUser, List<Receipt> receiptList)
+    {
+    	User user = myUser;
+    	receipt.setReceiptList(receiptList);
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.merge(user);
         em.getTransaction().commit();
     }
 }
