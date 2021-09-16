@@ -72,8 +72,7 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public User(Long userId, String username, String password, String email, String role, Date dateJoined) {
-        this.userId = userId;
+    public User(String username, String password, String email, String role, Date dateJoined) {
         this.username = username;
         this.password = password;
         this.email = email;

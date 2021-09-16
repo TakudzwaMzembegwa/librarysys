@@ -1916,12 +1916,6 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     }
  
     private void signUp(){
-        long Id = 0;
-        try{
-            Id = Long.parseLong(regId.getText());
-        }catch(NumberFormatException e){
-            
-        }
         String Fname = RegName.getText();
         String Lname = RegLname.getText();
         String email = regEmail.getText();
@@ -1940,7 +1934,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Email domain not allowed or invalid");
             }
             else if(Password!=null){
-                User newUser = new User(Id, Username, PassCrypt.hash(Password), email, role, new Date());
+                User newUser = new User(Username, PassCrypt.hash(Password), email, role, new Date());
                 em.getTransaction().begin();
                 em.persist(newUser);
                 em.getTransaction().commit();
