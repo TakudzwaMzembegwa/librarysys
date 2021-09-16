@@ -62,7 +62,7 @@ public class DeleteUpdateDOA{
     public void deleteReceipt(Long receiptID) 
    {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-        Receipt receipt = em.find(Receipt.class, receiptId);
+        Receipt receipt = em.find(Receipt.class, receiptID);
         
        if (receipt != null) {
             em.getTransaction().begin();
@@ -97,7 +97,7 @@ public class DeleteUpdateDOA{
     public void updateUser(User myUser, List<Receipt> receiptList)
     {
     	User user = myUser;
-    	receipt.setReceiptList(receiptList);
+    	user.setReceiptList(receiptList);
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.merge(user);
