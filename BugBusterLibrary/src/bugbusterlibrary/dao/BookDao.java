@@ -45,20 +45,24 @@ public class BookDao {
         em.clear();   
     } 
     
+    // function to delete a book from the databse. 
     public void deleteBook(Long bookId) 
     {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-        Book book = em.find(Book.class, bookId);
+        Book book = em.find(Book.class, bookId); // search for the book by its ID.  
         
-       if (book != null) {
+       if (book != null) // check if the book exists in the database. 
+       {
             em.getTransaction().begin();
-            em.remove(book);
+            em.remove(book); // delete the book. 
             em.getTransaction().commit();
         }
     }
 
+    // function to update a book. 
     public void updateBook(Book myBook, String description, String edition, String image, Category categoryId)
     {
+        // set the updated parameters for the book. 
         Book book = myBook;
         book.setDescription(description);
         book.setEdition(edition);
@@ -67,7 +71,7 @@ public class BookDao {
 
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        em.merge(book);
+        em.merge(book); // call to update the book. 
         em.getTransaction().commit();
     }
     
