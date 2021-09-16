@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlTransient;
         @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
         @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
         @NamedQuery(name = "User.findByRole", query = "SELECT u FROM User u WHERE u.role = :role"),
-        @NamedQuery(name = "User.findByDateJoined", query = "SELECT u FROM User u WHERE u.dateJoined = :dateJoined") })
+        @NamedQuery(name = "User.findByDateJoined", query = "SELECT u FROM User u WHERE u.dateJoined = :dateJoined"),
+        @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName"),
+        @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName") })
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,6 +51,12 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "username")
     private String username;
+    @Basic(optional = false)
+    @Column(name = "first_name")
+    private String firstName;
+    @Basic(optional = false)
+    @Column(name = "last_name")
+    private String lastName;
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
@@ -72,8 +80,11 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public User(String username, String password, String email, String role, Date dateJoined) {
+    public User(String username, String firstName, String lastName, String password, String email, String role,
+            Date dateJoined) {
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -94,6 +105,22 @@ public class User implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -142,6 +169,8 @@ public class User implements Serializable {
         int hash = 7;
         hash = 37 * hash + Objects.hashCode(this.userId);
         hash = 37 * hash + Objects.hashCode(this.username);
+        hash = 37 * hash + Objects.hashCode(this.firstName);
+        hash = 37 * hash + Objects.hashCode(this.lastName);
         hash = 37 * hash + Objects.hashCode(this.password);
         hash = 37 * hash + Objects.hashCode(this.email);
         hash = 37 * hash + Objects.hashCode(this.role);
@@ -162,6 +191,12 @@ public class User implements Serializable {
         }
         final User other = (User) obj;
         if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastName, other.lastName)) {
             return false;
         }
         if (!Objects.equals(this.password, other.password)) {
