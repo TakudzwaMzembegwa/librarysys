@@ -36,6 +36,27 @@ public class UserDao {
         User user = em.createNamedQuery("User.findByUsername", User.class).setParameter("username", username).getSingleResult();
         return user;
     }
+    
+   public void deleteUser(Long userID) 
+   {
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        User user = em.find(User.class, userID);
+        
+       if (user != null) {
+            em.getTransaction().begin();
+            em.remove(user);
+            em.getTransaction().commit();
+        }
+    }
 
+    public void updateUser(User myUser, List<Receipt> receiptList)
+    {
+    	User user = myUser;
+    	receipt.setReceiptList(receiptList);
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.merge(user);
+        em.getTransaction().commit();
+    }
     
 }
