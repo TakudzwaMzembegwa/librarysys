@@ -54,4 +54,27 @@ public class ReceiptDao {
         em.getTransaction().commit();
         em.clear();
     }
+    
+     public void deleteReceipt(Long receiptID) 
+   {
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        Receipt receipt = em.find(Receipt.class, receiptId);
+        
+       if (receipt != null) {
+            em.getTransaction().begin();
+            em.remove(receipt);
+            em.getTransaction().commit();
+        }
+    }
+
+    public void updateReceipt(Receipt myReceipt, Book bookID, User userID)
+    {
+    	Receipt receipt = myReceipt;
+    	receipt.setBookId(bookID);
+    	receipt.setUserId(userID); 
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.merge(receipt);
+        em.getTransaction().commit();
+    }
 }

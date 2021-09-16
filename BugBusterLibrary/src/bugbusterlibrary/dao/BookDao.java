@@ -45,4 +45,30 @@ public class BookDao {
         em.clear();   
     } 
     
+    public void deleteBook(Long bookId) 
+    {
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        Book book = em.find(Book.class, bookId);
+        
+       if (book != null) {
+            em.getTransaction().begin();
+            em.remove(book);
+            em.getTransaction().commit();
+        }
+    }
+
+    public void updateBook(Book myBook, String description, String edition, String image, Category categoryId)
+    {
+        Book book = myBook;
+        book.setDescription(description);
+        book.setEdition(edition);
+        book.setImage(image);
+        book.setCategoryId(categoryId);
+
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.merge(book);
+        em.getTransaction().commit();
+    }
+    
 }

@@ -4,6 +4,7 @@ import bugbusterlibrary.entity.Book;
 import bugbusterlibrary.entity.Category;
 import bugbusterlibrary.entity.Receipt;
 import bugbusterlibrary.entity.User;
+import bugbusterlibrary.EntityManagerFactoryHandler;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
