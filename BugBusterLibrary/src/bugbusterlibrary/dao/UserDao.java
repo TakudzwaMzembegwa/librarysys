@@ -37,25 +37,30 @@ public class UserDao {
         return user;
     }
     
-   public void deleteUser(Long userID) 
-   {
-        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-        User user = em.find(User.class, userID);
+    // funtion to delete a specific user. 
+    public void deleteUser(Long userID) 
+    {
+       EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+       User user = em.find(User.class, userID); // search for the user by ID. 
         
-       if (user != null) {
+       if (user != null) // see if they are in the database. 
+       {
             em.getTransaction().begin();
-            em.remove(user);
+            em.remove(user); // then remove them. 
             em.getTransaction().commit();
         }
     }
 
+    // function to update a user's details. 
     public void updateUser(User myUser, List<Receipt> receiptList)
     {
+        // set the new information. 
     	User user = myUser;
     	receipt.setReceiptList(receiptList);
+        
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        em.merge(user);
+        em.merge(user); // update it. 
         em.getTransaction().commit();
     }
     
