@@ -30,6 +30,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BugBusterLibraryUI extends javax.swing.JFrame {
     
+    public static final String UWC_EDOMAIN = "@myuwc.ac.za";
+    
     EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
     EntityManager em=emf.createEntityManager();
     /**
@@ -1934,7 +1936,10 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         String Password = RegPassword.getText();
         String Re_enter_password = RegReEnterpassword.getText();
         if(!"".equals(Fname) && !"".equals(Lname) && !"".equals(Username) && !"".equals(Password) && !"".equals(role)){
-            if(Password!=null){
+            if(!email.contains(UWC_EDOMAIN)){
+                JOptionPane.showMessageDialog(null, "Email domain not allowed or invalid");
+            }
+            else if(Password!=null){
                 User newUser = new User(Id, Username, PassCrypt.hash(Password), email, role, new Date());
                 em.getTransaction().begin();
                 em.persist(newUser);
