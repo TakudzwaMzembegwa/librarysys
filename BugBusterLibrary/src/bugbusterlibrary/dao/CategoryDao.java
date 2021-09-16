@@ -40,23 +40,26 @@ public class CategoryDao {
         em.close();
     }  
     
+    // function to delete a category. 
     public void deleteCategory(Category categoryId) 
     {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-        Category category = em.find(Category.class, categoryId);
+        Category category = em.find(Category.class, categoryId); // search for the category by its ID. 
         
-       if (category != null) {
+       if (category != null) // check if the category is in the database. 
+       {
             em.getTransaction().begin();
-            em.remove(category);
+            em.remove(category); // delete the category. 
             em.getTransaction().commit();
         }
     }
 
+    // function to update a category. 
     public void updateCategory(Category category)
     {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        em.merge(category);
+        em.merge(category); // call to update the category. 
         em.getTransaction().commit();
     }
 }
