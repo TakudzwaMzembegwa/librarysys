@@ -57,4 +57,27 @@ public class DeleteUpdateDOA{
         em.merge(category);
         em.getTransaction().commit();
     }
+    
+    public void deleteReceipt(Long receiptID) 
+   {
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        Receipt receipt = em.find(Receipt.class, receiptId);
+        
+       if (receipt != null) {
+            em.getTransaction().begin();
+            em.remove(receipt);
+            em.getTransaction().commit();
+        }
+    }
+
+    public void updateReceipt(Receipt myReceipt, Long bookID, Long userID)
+    {
+    	Receipt receipt = myReceipt;
+    	receipt.setBookId(bookID);
+    	receipt.setUserId(userID); 
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.merge(receipt);
+        em.getTransaction().commit();
+    }
 }
