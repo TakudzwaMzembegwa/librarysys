@@ -1591,7 +1591,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         EditBookDescription.setRows(5);
         jScrollPane4.setViewportView(EditBookDescription);
 
-        EditBookAvailability.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Not-Available" }));
+        EditBookAvailability.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Not-Available", "Reserved" }));
 
         EditBookBackButton.setBackground(new java.awt.Color(255, 255, 255));
         EditBookBackButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -2000,7 +2000,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         BookDescription.setRows(5);
         jScrollPane3.setViewportView(BookDescription);
 
-        BookAvailability.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Not-Available" }));
+        BookAvailability.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Not-Available", "Reserved" }));
 
         javax.swing.GroupLayout AdminPersistBookPanelLayout = new javax.swing.GroupLayout(AdminPersistBookPanel);
         AdminPersistBookPanel.setLayout(AdminPersistBookPanelLayout);
@@ -2019,7 +2019,6 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                         .addGap(115, 115, 115)
                         .addGroup(AdminPersistBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(AdminPersistBookPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(AddBook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(127, 127, 127)
                                 .addComponent(AddBookBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2622,6 +2621,9 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         EditBookISBN.setText(book.getIsbn());
         EditBookEdition.setText(book.getEdition());
         EditBookDescription.setText(book.getDescription());
+        EditBookCategory.setSelectedItem(Integer.toString(book.getCategoryId().getCategoryId())+":"+
+                          book.getCategoryId().getFaculty()+" - "+ book.getCategoryId().getDepartment());
+        EditBookAvailability.setSelectedItem(book.getAvailability());
         AdminBookListPanel.setVisible(false);
         AdminEditBookPanel.setVisible(true);
         }catch(ArrayIndexOutOfBoundsException e){
@@ -2641,7 +2643,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         String availability = (String) EditBookAvailability.getSelectedItem();
         Book mybook = new Book(selectedIndex_, title, author, isbn, availability);
         BookDao bookdao = new BookDao();
-        bookdao.updateBook(mybook, description, edition, isbn, categoryId);
+        bookdao.updateBook(mybook, description, edition, "", categoryId);
         JOptionPane.showMessageDialog(null, "Book Modified!");
     }
     
