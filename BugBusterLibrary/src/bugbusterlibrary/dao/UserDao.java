@@ -41,6 +41,20 @@ public class UserDao {
     }
 
     /**
+     * Adds a user to the database
+     * 
+     * @param user the user to be persisted
+     */
+    public void persist(User user) {
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.persist(user);
+        em.getTransaction().commit();
+        em.clear();
+        em.close();
+    }
+
+    /**
      * Deletes a user specific from the database.
      * 
      * @param userID the id of the user to be deleted
