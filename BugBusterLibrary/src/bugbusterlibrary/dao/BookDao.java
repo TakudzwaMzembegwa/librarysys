@@ -27,6 +27,12 @@ public class BookDao {
         return books;
     } 
     
+    public Book findById(int Id){
+        EntityManager em =  EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        Book book = em.createNamedQuery("Book.findByBookId", Book.class).setParameter("bookId", Id).getSingleResult();
+        return book;
+    }
+    
     /** 
      * Adds a book in the database
      * @param book the book to be persisted 
