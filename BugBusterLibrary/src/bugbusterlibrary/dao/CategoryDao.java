@@ -27,6 +27,12 @@ public class CategoryDao {
         return category;
     } 
     
+    public Category findById(int Id){
+        EntityManager em =  EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        Category category = em.createNamedQuery("Category.findByCategoryId", Category.class).setParameter("categoryId", Id).getSingleResult();
+        return category;
+    }
+    
     /**
      * Add a category in the category list
      * @param category the category to be persisted 
