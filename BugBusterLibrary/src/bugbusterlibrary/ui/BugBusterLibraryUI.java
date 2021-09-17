@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Sango
+ * @author Takudzwa Mzembegwa
  */
 public class BugBusterLibraryUI extends javax.swing.JFrame {
     

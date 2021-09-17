@@ -59,46 +59,55 @@ public class BookDao {
         em.clear();
     }
 
+    /***
+     * To search for a book using a set of parameters, defaults can be used to
+     * ignore a parameter(s) while making a search.
+     * 
+     * @param title        the title you want to search book by: nul lable Or ""
+     * @param author       the author you want to search book by: nullable Or ""
+     * @param edition      the edition of the book you want to search for: 0 to
+     *                     exclude it
+     * @param availability the availability of the book you want to search for:
+     *                     nullable Or ""
+     * @param category     the category to search book from: nullable
+     * 
+     * @return List<Book> A List of book(s) that matches the given parameters
+     */
     public List<Book> searchBooksByParameters(String title, String author, int edition, String availability,
             Category category) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         String sql = "SELECT b FROM Book b WHERE 1 = 1 ";
-        if (title != null && !title.isEmpty()) {
+        if (title != null && !title.isEmpty())
             sql += "AND b.title LIKE :title ";
-        }
-        if (author != null && !author.isEmpty()) {
+        if (author != null && !author.isEmpty())
             sql += "AND b.author LIKE :author ";
-        }
-        if (edition > 0) {
+        if (edition > 0)
             sql += "AND b.edition LIKE :edition ";
-        }
-        if (availability != null && !availability.isEmpty()) {
+        if (availability != null && !availability.isEmpty())
             sql += "AND b.availability = :availability ";
-        }
-        if (category != null) {
+        if (category != null)
             sql += "AND b.categoryId = :categoryId";
-        }
-        Query q = em.createQuery(sql);
-        if (title != null && !title.isEmpty()) {
-            q.setParameter("title", "%" + title + "%");
-        }
-        if (author != null && !author.isEmpty()) {
-            q.setParameter("author", "%" + author + "%");
-        }
-        if (edition > 0) {
-            q.setParameter("edition", "%" + edition + "%");
-        }
-        if (availability != null && !availability.isEmpty()) {
-            q.setParameter("availability", availability);
-        }
-        if (category != null) {
-            q.setParameter("categoryId", category);
-        }
 
+        Query q = em.createQuery(sql);
+
+        if (title != null && !title.isEmpty())
+            q.setParameter("title", "%" + title + "%");
+        if (author != null && !author.isEmpty())
+            q.setParameter("author", "%" + author + "%");
+        if (edition > 0)
+            q.setParameter("edition", "%" + edition + "%");
+        if (availability != null && !availability.isEmpty())
+            q.setParameter("availability", availability);
+        if (category != null)
+            q.setParameter("categoryId", category);
         return q.getResultList();
     }
 
-    // function to delete a book from the databse.
+    /**
+     * Function to delete a book from the database.
+     * 
+     * @param bookId The id of the book to delete
+     */
     public void deleteBook(Long bookId) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         Book book = em.find(Book.class, bookId); // search for the book by its ID.
@@ -111,7 +120,15 @@ public class BookDao {
         }
     }
 
-    // function to update a book.
+    /**
+     * Function to update a book
+     * 
+     * @param myBook
+     * @param description
+     * @param edition
+     * @param image
+     * @param categoryId
+     */
     public void updateBook(Book myBook, String description, String edition, String image, Category categoryId) {
         // set the updated parameters for the book.
         Book book = myBook;
