@@ -30,11 +30,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "Receipt", catalog = "sql10433996", schema = "")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Receipt.findAll", query = "SELECT r FROM Receipt r")
-    , @NamedQuery(name = "Receipt.findByReceiptId", query = "SELECT r FROM Receipt r WHERE r.receiptId = :receiptId")
-    , @NamedQuery(name = "Receipt.findByDateLoaned", query = "SELECT r FROM Receipt r WHERE r.dateLoaned = :dateLoaned")
-    , @NamedQuery(name = "Receipt.findByDateReturned", query = "SELECT r FROM Receipt r WHERE r.dateReturned = :dateReturned")})
+@NamedQueries({ @NamedQuery(name = "Receipt.findAll", query = "SELECT r FROM Receipt r"),
+        @NamedQuery(name = "Receipt.findByReceiptId", query = "SELECT r FROM Receipt r WHERE r.receiptId = :receiptId"),
+        @NamedQuery(name = "Receipt.findByDateLoaned", query = "SELECT r FROM Receipt r WHERE r.dateLoaned = :dateLoaned"),
+        @NamedQuery(name = "Receipt.findByDateReturned", query = "SELECT r FROM Receipt r WHERE r.dateReturned = :dateReturned") })
 public class Receipt implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -93,6 +92,7 @@ public class Receipt implements Serializable {
     public void setDateReturned(Date dateReturned) {
         this.dateReturned = dateReturned;
     }
+
     public User getUserId() {
         return userId;
     }
@@ -107,6 +107,19 @@ public class Receipt implements Serializable {
 
     public void setBookId(Book bookId) {
         this.bookId = bookId;
+    }
+
+    /***
+     * Calculates the fine a user gets for keeping a book past due the date. A user
+     * can keep a book for no more than 7 days. After that, the user will get fined
+     * 8zar per day for every extra day they keep the book.
+     * 
+     * @return the fine charged.
+     */
+    public double getFine() {
+        double fine = (((this.getDateReturned().getTime() - this.getDateLoaned().getTime()) - (7 * 8.64e+7)) / 8.64e+7)
+                * 8;
+        return fine > 0 ? fine : 0;
     }
 
     @Override
@@ -150,11 +163,9 @@ public class Receipt implements Serializable {
         return true;
     }
 
-   
-
     @Override
     public String toString() {
         return "bugbusterlibrary.entity.Receipt[ receiptId=" + receiptId + " ]";
     }
-    
+
 }
