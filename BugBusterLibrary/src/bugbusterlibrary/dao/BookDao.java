@@ -8,6 +8,8 @@ package bugbusterlibrary.dao;
 import bugbusterlibrary.EntityManagerFactoryHandler;
 import bugbusterlibrary.entity.Book;
 import bugbusterlibrary.entity.Category;
+import bugbusterlibrary.entity.Receipt;
+import bugbusterlibrary.entity.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,6 +34,13 @@ public class BookDao {
         List<Book> books = em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
         return books;
     }
+    
+    /**
+     * Search book by book Id
+     * 
+     * @param Id
+     * @return book
+     */
 
     public Book findById(int Id) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
@@ -141,6 +150,22 @@ public class BookDao {
         em.getTransaction().begin();
         em.merge(book); // call to update the book.
         em.getTransaction().commit();
+    }
+    
+    /**
+     * Finds books loaned by a user
+     * 
+     * @param user
+     * @return  books
+     */
+    public List<Book> userBooks(User user){
+        ReceiptDao receiptdao = new ReceiptDao();
+        List<Receipt> receipts = receiptdao.findUserReceipts(user);
+        List<Book> userBooks = null;
+        for(Receipt receipt : receipts){
+            userBooks.add(receipt.getBookId());
+        }
+        return userBooks;
     }
 
 }
