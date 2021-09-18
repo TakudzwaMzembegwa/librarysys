@@ -9,6 +9,7 @@ import bugbusterlibrary.EntityManagerFactoryHandler;
 import bugbusterlibrary.entity.Book;
 import bugbusterlibrary.entity.Receipt;
 import bugbusterlibrary.entity.User;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -36,11 +37,17 @@ public class ReceiptDao {
      * @return user's receipts
      */
     public List<Receipt> findUserReceipts(User user) {
-        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-        List<Receipt> userRecepits = em
-                .createQuery("SELECT r FROM Receipt r WHERE r.receiptId = :receiptId", Receipt.class)
-                .setParameter("receiptId", user.getUserId()).getResultList();
-        return userRecepits;
+        List<Receipt> receipts = findAll();
+        ArrayList<Receipt> arrReceipt = new ArrayList<>();
+        System.out.println(receipts.size());
+        for(Receipt receipt : receipts){
+            if((long)receipt.getUserId().getUserId() == user.getUserId()){
+                System.out.println(receipt);
+                arrReceipt.add((Receipt) receipt);
+            }
+        }
+        List<Receipt> userReceipts = arrReceipt;
+        return userReceipts;
     }
 
     /**
