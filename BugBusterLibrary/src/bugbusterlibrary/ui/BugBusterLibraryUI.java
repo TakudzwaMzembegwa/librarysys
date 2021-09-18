@@ -8,6 +8,7 @@ package bugbusterlibrary.ui;
 import bugbusterlibrary.PassCrypt;
 import bugbusterlibrary.dao.BookDao;
 import bugbusterlibrary.dao.CategoryDao;
+import bugbusterlibrary.dao.ReceiptDao;
 import bugbusterlibrary.dao.UserDao;
 import java.awt.Color;
 import java.sql.*;
@@ -33,6 +34,8 @@ import javax.swing.table.DefaultTableModel;
 public class BugBusterLibraryUI extends javax.swing.JFrame {
     
     public static final String UWC_EDOMAIN = "@myuwc.ac.za";
+    
+    User user; //will set set when user login or sign up
     /**
      * Creates new form BugBusterLibraryUI
      */
@@ -142,6 +145,13 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         StudentBookBackButton = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
         MyBooksContent = new javax.swing.JPanel();
+        jLabel67 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        MyBooksTable = new javax.swing.JTable();
+        jLabel68 = new javax.swing.JLabel();
+        BookReturnButton = new javax.swing.JPanel();
+        jLabel69 = new javax.swing.JLabel();
+        jSeparator11 = new javax.swing.JSeparator();
         AboutContent = new javax.swing.JPanel();
         AdminMenuPane = new javax.swing.JPanel();
         HeadNamePane5 = new javax.swing.JPanel();
@@ -171,7 +181,19 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         AdminCategoryBackButton = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         AdminReceiptPanel = new javax.swing.JPanel();
+        AdminReceiptsBackButton = new javax.swing.JPanel();
+        jLabel72 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        ReceiptsTable = new javax.swing.JTable();
+        jLabel73 = new javax.swing.JLabel();
+        jSeparator13 = new javax.swing.JSeparator();
         AdminMembersPanel = new javax.swing.JPanel();
+        jLabel70 = new javax.swing.JLabel();
+        jSeparator12 = new javax.swing.JSeparator();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        MembersTable = new javax.swing.JTable();
+        AdminMebersBackButton = new javax.swing.JPanel();
+        jLabel71 = new javax.swing.JLabel();
         AdminBookPanel = new javax.swing.JPanel();
         AdminEditBookPanel = new javax.swing.JPanel();
         jLabel45 = new javax.swing.JLabel();
@@ -446,9 +468,9 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             LogInPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogInPaneLayout.createSequentialGroup()
                 .addComponent(HeadNamePane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         getContentPane().add(LogInPane, "card2");
@@ -707,7 +729,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                 .addGroup(RegistrationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(RegSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(RegBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -951,7 +973,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FacultyScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(FacultyScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1134,7 +1156,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BooksLayout.createSequentialGroup()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(StudentBookBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -1145,15 +1167,91 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
 
         MyBooksContent.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel67.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel67.setText("MY BOOKS");
+
+        MyBooksTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Author", "Title", "ISBN", "Edition", "Description", "Status"
+            }
+        ));
+        jScrollPane5.setViewportView(MyBooksTable);
+
+        jLabel68.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel68.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel68.setText("To Return book, first select the book then the Return button!");
+
+        BookReturnButton.setBackground(new java.awt.Color(255, 255, 255));
+        BookReturnButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel69.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel69.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/return_25px.png"))); // NOI18N
+        jLabel69.setText("Return book");
+        jLabel69.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel69MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel69MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout BookReturnButtonLayout = new javax.swing.GroupLayout(BookReturnButton);
+        BookReturnButton.setLayout(BookReturnButtonLayout);
+        BookReturnButtonLayout.setHorizontalGroup(
+            BookReturnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel69, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+        );
+        BookReturnButtonLayout.setVerticalGroup(
+            BookReturnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel69, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout MyBooksContentLayout = new javax.swing.GroupLayout(MyBooksContent);
         MyBooksContent.setLayout(MyBooksContentLayout);
         MyBooksContentLayout.setHorizontalGroup(
             MyBooksContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 679, Short.MAX_VALUE)
+            .addGroup(MyBooksContentLayout.createSequentialGroup()
+                .addGroup(MyBooksContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MyBooksContentLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane5))
+                    .addGroup(MyBooksContentLayout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(jLabel67)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MyBooksContentLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel68)
+                .addGap(158, 158, 158))
+            .addGroup(MyBooksContentLayout.createSequentialGroup()
+                .addGroup(MyBooksContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MyBooksContentLayout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MyBooksContentLayout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(BookReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         MyBooksContentLayout.setVerticalGroup(
             MyBooksContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 554, Short.MAX_VALUE)
+            .addGroup(MyBooksContentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel68)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BookReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         ContentPane.add(MyBooksContent, "card3");
@@ -1168,7 +1266,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         );
         AboutContentLayout.setVerticalGroup(
             AboutContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 554, Short.MAX_VALUE)
+            .addGap(0, 557, Short.MAX_VALUE)
         );
 
         ContentPane.add(AboutContent, "card4");
@@ -1322,8 +1420,12 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         AdminReceipts.setPreferredSize(new java.awt.Dimension(213, 100));
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel37.setText("        RECEIPTS");
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/bill_filled_25px.png"))); // NOI18N
+        jLabel37.setText("    RECEIPTS");
         jLabel37.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel37MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel34MouseEntered(evt);
             }
@@ -1354,8 +1456,12 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         AdminMembers.setPreferredSize(new java.awt.Dimension(213, 100));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel35.setText("        MEMBERS");
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/crowd_filled_25px.png"))); // NOI18N
+        jLabel35.setText("    MEMBERS");
         jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel35MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel35MouseEntered(evt);
             }
@@ -1561,30 +1667,191 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
 
         AdminReceiptPanel.setBackground(new java.awt.Color(204, 204, 255));
 
+        AdminReceiptsBackButton.setBackground(new java.awt.Color(255, 255, 255));
+        AdminReceiptsBackButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel72.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/left_arrow_25px.png"))); // NOI18N
+        jLabel72.setText("Back");
+        jLabel72.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel72MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel72MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel72MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AdminReceiptsBackButtonLayout = new javax.swing.GroupLayout(AdminReceiptsBackButton);
+        AdminReceiptsBackButton.setLayout(AdminReceiptsBackButtonLayout);
+        AdminReceiptsBackButtonLayout.setHorizontalGroup(
+            AdminReceiptsBackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel72, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+        );
+        AdminReceiptsBackButtonLayout.setVerticalGroup(
+            AdminReceiptsBackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel72, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+        );
+
+        ReceiptsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Receipt Id", "User Id", "Book Id", "Date Loaned", "dateReturned", "Fine Due"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.Long.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(ReceiptsTable);
+
+        jLabel73.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel73.setText("RECEIPTS");
+
         javax.swing.GroupLayout AdminReceiptPanelLayout = new javax.swing.GroupLayout(AdminReceiptPanel);
         AdminReceiptPanel.setLayout(AdminReceiptPanelLayout);
         AdminReceiptPanelLayout.setHorizontalGroup(
             AdminReceiptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 835, Short.MAX_VALUE)
+            .addGroup(AdminReceiptPanelLayout.createSequentialGroup()
+                .addGroup(AdminReceiptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AdminReceiptPanelLayout.createSequentialGroup()
+                        .addGroup(AdminReceiptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AdminReceiptPanelLayout.createSequentialGroup()
+                                .addGap(354, 354, 354)
+                                .addComponent(jLabel73))
+                            .addGroup(AdminReceiptPanelLayout.createSequentialGroup()
+                                .addGap(225, 225, 225)
+                                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 214, Short.MAX_VALUE))
+                    .addGroup(AdminReceiptPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(AdminReceiptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane8)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminReceiptPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(AdminReceiptsBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         AdminReceiptPanelLayout.setVerticalGroup(
             AdminReceiptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+            .addGroup(AdminReceiptPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel73)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(AdminReceiptsBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         AdminContents.add(AdminReceiptPanel, "card5");
 
         AdminMembersPanel.setBackground(new java.awt.Color(204, 204, 255));
 
+        jLabel70.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel70.setText("MEMBERS");
+
+        MembersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "userId", "First Name", "Last Name", "Username", "Email", "Role", "dateJoined"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(MembersTable);
+
+        AdminMebersBackButton.setBackground(new java.awt.Color(255, 255, 255));
+        AdminMebersBackButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel71.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/left_arrow_25px.png"))); // NOI18N
+        jLabel71.setText("Back");
+        jLabel71.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel71MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel71MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel71MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AdminMebersBackButtonLayout = new javax.swing.GroupLayout(AdminMebersBackButton);
+        AdminMebersBackButton.setLayout(AdminMebersBackButtonLayout);
+        AdminMebersBackButtonLayout.setHorizontalGroup(
+            AdminMebersBackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel71, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+        );
+        AdminMebersBackButtonLayout.setVerticalGroup(
+            AdminMebersBackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel71, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout AdminMembersPanelLayout = new javax.swing.GroupLayout(AdminMembersPanel);
         AdminMembersPanel.setLayout(AdminMembersPanelLayout);
         AdminMembersPanelLayout.setHorizontalGroup(
             AdminMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 835, Short.MAX_VALUE)
+            .addGroup(AdminMembersPanelLayout.createSequentialGroup()
+                .addGroup(AdminMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AdminMembersPanelLayout.createSequentialGroup()
+                        .addGroup(AdminMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AdminMembersPanelLayout.createSequentialGroup()
+                                .addGap(354, 354, 354)
+                                .addComponent(jLabel70))
+                            .addGroup(AdminMembersPanelLayout.createSequentialGroup()
+                                .addGap(225, 225, 225)
+                                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 214, Short.MAX_VALUE))
+                    .addGroup(AdminMembersPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(AdminMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane7)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminMembersPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(AdminMebersBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         AdminMembersPanelLayout.setVerticalGroup(
             AdminMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+            .addGroup(AdminMembersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel70)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(AdminMebersBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         AdminContents.add(AdminMembersPanel, "card6");
@@ -2280,6 +2547,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         AboutContent.setVisible(false);
         BooksCategoryContent.setVisible(false);
         MyBooksContent.setVisible(true);
+        showUserBooks(user);
     }                                              
 
     private void AboutOptionTextMouseClicked(java.awt.event.MouseEvent evt) {                                             
@@ -2525,6 +2793,52 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         showDepList(selectedValue);
 
     }                                        
+
+    private void jLabel69MouseEntered(java.awt.event.MouseEvent evt) {                                      
+        ButtonEnteredColor(BookReturnButton, new Color(0,153,153));
+    }                                     
+
+    private void jLabel69MouseExited(java.awt.event.MouseEvent evt) {                                     
+        ButtonEnteredColor(BookReturnButton, new Color(255,255,255));
+    }                                    
+
+    private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        AdminHomePanel.setVisible(false);
+        AdminMembersPanel.setVisible(true);
+        showAdminMembersTable();
+    }                                     
+
+    private void jLabel71MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        AdminMembersPanel.setVisible(false);
+        AdminHomePanel.setVisible(true);
+    }                                     
+
+    private void jLabel71MouseEntered(java.awt.event.MouseEvent evt) {                                      
+        ButtonEnteredColor(AdminMebersBackButton, new Color(0,153,153));
+    }                                     
+
+    private void jLabel71MouseExited(java.awt.event.MouseEvent evt) {                                     
+        ButtonEnteredColor(AdminMebersBackButton, new Color(255,255,255));
+    }                                    
+
+    private void jLabel72MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        AdminReceiptPanel.setVisible(false);
+        AdminHomePanel.setVisible(true);
+    }                                     
+
+    private void jLabel72MouseEntered(java.awt.event.MouseEvent evt) {                                      
+        ButtonEnteredColor(AdminReceiptsBackButton, new Color(0,153,153));
+    }                                     
+
+    private void jLabel72MouseExited(java.awt.event.MouseEvent evt) {                                     
+        ButtonEnteredColor(AdminReceiptsBackButton, new Color(255,255,255));
+    }                                    
+
+    private void jLabel37MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        AdminHomePanel.setVisible(false);
+        AdminReceiptPanel.setVisible(true);
+        showAdminReceiptsTable();
+    }                                     
     
     private void ButtonEnteredColor(JPanel pane, Color color){
         pane.setBackground(color);
@@ -2563,7 +2877,8 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             }
             else if(Password!=null){
                 UserDao userDao = new UserDao();
-                userDao.persist(new User(Username, firstName, lastName, PassCrypt.hash(Password), email, role, new Date()));
+                user = new User(Username, firstName, lastName, PassCrypt.hash(Password), email, role, new Date());
+                userDao.persist(user);
                 JOptionPane.showMessageDialog(null, "Registered!");
                 RegistrationPane.setVisible(false);
                 LogInPane.setVisible(true);
@@ -2589,7 +2904,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         }
         try{
             UserDao userDao = new UserDao();
-            User user = userDao.findByUsername(Logname);
+            user = userDao.findByUsername(Logname);
             if(user.getUsername().equals(Logname) && PassCrypt.validate(Logpass, user.getPassword()) && user.getRole().equals(role)){
                 JOptionPane.showMessageDialog(null, "Logging in!");
                 LogInPane.setVisible(false);
@@ -2818,6 +3133,50 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         }  
     }
     
+    private void showUserBooks(User user){
+        BookDao bookdao = new BookDao();
+        List<Book> userBooks = bookdao.userBooks(user);
+        if(!userBooks.isEmpty()){
+            DefaultTableModel DTM = (DefaultTableModel) MyBooksTable.getModel();
+            DTM.setRowCount(0);
+            for (Book book : userBooks) {
+                String[] text = {Long.toString(book.getBookId()), book.getAuthor(), book.getTitle(),
+                              book.getIsbn(), book.getEdition(), book.getDescription(),
+                              book.getAvailability()};
+                DTM.addRow(text);
+            } 
+        }
+    }
+    
+    private void showAdminMembersTable(){
+        UserDao userdao = new UserDao();
+        List<User> users = userdao.findAll();
+        if(!users.isEmpty()){
+            DefaultTableModel DTM = (DefaultTableModel) MembersTable.getModel();
+            DTM.setRowCount(0);
+            for (User user : users) {
+                String[] text = {Long.toString(user.getUserId()), user.getFirstName(), user.getLastName(),
+                              user.getUsername(), user.getEmail(), user.getRole(),
+                              user.getDateJoined().toString()};
+                DTM.addRow(text);
+            } 
+        }
+    }
+    private void showAdminReceiptsTable(){
+        ReceiptDao receiptdao = new ReceiptDao();
+        List<Receipt> receipts = receiptdao.findAll();
+        if(!receipts.isEmpty()){
+            DefaultTableModel DTM = (DefaultTableModel) ReceiptsTable.getModel();
+            DTM.setRowCount(0);
+            for (Receipt receipt : receipts) {
+                Object[] text = {receipt.getReceiptId(), receipt.getUserId().getUserId(), 
+                                 receipt.getBookId().getBookId(), receipt.getDateLoaned().toString(), 
+                                 receipt.getDateReturned(), receipt.getFine()};
+                DTM.addRow(text);
+            } 
+        }
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -2875,12 +3234,14 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JPanel AdminEditBookPanel;
     private javax.swing.JPanel AdminHomePanel;
     private javax.swing.JLabel AdminLoggedInName;
+    private javax.swing.JPanel AdminMebersBackButton;
     private javax.swing.JPanel AdminMembers;
     private javax.swing.JPanel AdminMembersPanel;
     private javax.swing.JPanel AdminMenuPane;
     private javax.swing.JPanel AdminPersistBookPanel;
     private javax.swing.JPanel AdminReceiptPanel;
     private javax.swing.JPanel AdminReceipts;
+    private javax.swing.JPanel AdminReceiptsBackButton;
     private javax.swing.JTextField BookAuthor;
     private javax.swing.JComboBox<String> BookAvailability;
     private javax.swing.JComboBox<String> BookCategory;
@@ -2888,6 +3249,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JTextField BookEdition;
     private javax.swing.JTextField BookISBN;
     private javax.swing.JPanel BookOption;
+    private javax.swing.JPanel BookReturnButton;
     private javax.swing.JTextField BookTitle;
     private javax.swing.JPanel Books;
     private javax.swing.JPanel BooksCategoryContent;
@@ -2927,9 +3289,12 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JLabel LogInbutton;
     private javax.swing.JLabel LogOutButton;
     private javax.swing.JLabel LogOutButton1;
+    private javax.swing.JTable MembersTable;
     private javax.swing.JPanel MyBooksContent;
     private javax.swing.JPanel MyBooksOption;
     private javax.swing.JLabel MyBooksOptionText;
+    private javax.swing.JTable MyBooksTable;
+    private javax.swing.JTable ReceiptsTable;
     private javax.swing.JPanel RegBack;
     private javax.swing.JLabel RegBackText;
     private javax.swing.JTextField RegLname;
@@ -3011,7 +3376,14 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -3022,9 +3394,15 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
