@@ -39,7 +39,6 @@ public class ReceiptDao {
     public List<Receipt> findUserReceipts(User user) {
         List<Receipt> receipts = findAll();
         ArrayList<Receipt> arrReceipt = new ArrayList<>();
-        System.out.println(receipts.size());
         for(Receipt receipt : receipts){
             if((long)receipt.getUserId().getUserId() == user.getUserId()){
                 System.out.println(receipt);
