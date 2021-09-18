@@ -10,6 +10,7 @@ import bugbusterlibrary.entity.Book;
 import bugbusterlibrary.entity.Category;
 import bugbusterlibrary.entity.Receipt;
 import bugbusterlibrary.entity.User;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -161,9 +162,9 @@ public class BookDao {
     public List<Book> userBooks(User user){
         ReceiptDao receiptdao = new ReceiptDao();
         List<Receipt> receipts = receiptdao.findUserReceipts(user);
-        List<Book> userBooks = null;
+        List<Book> userBooks = new ArrayList<>();
         for(Receipt receipt : receipts){
-            userBooks.add(receipt.getBookId());
+            userBooks.add( receipt.getBookId());
         }
         return userBooks;
     }
