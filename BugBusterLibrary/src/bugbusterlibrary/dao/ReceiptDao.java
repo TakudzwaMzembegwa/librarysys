@@ -41,7 +41,6 @@ public class ReceiptDao {
         ArrayList<Receipt> arrReceipt = new ArrayList<>();
         for(Receipt receipt : receipts){
             if((long)receipt.getUserId().getUserId() == user.getUserId()){
-                System.out.println(receipt);
                 arrReceipt.add((Receipt) receipt);
             }
         }
