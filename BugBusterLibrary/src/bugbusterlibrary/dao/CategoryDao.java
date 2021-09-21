@@ -8,7 +8,6 @@ import bugbusterlibrary.EntityManagerFactoryHandler;
 import bugbusterlibrary.entity.Category;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
@@ -60,6 +59,15 @@ public class CategoryDao {
         }
     }
 
+    public Category findCategory(String faculty, String department){
+        EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+        Category category = em.createQuery("SELECT c FROM Category c WHERE c.faculty = :faculty AND c.department = :department", Category.class)
+                .setParameter("faculty", faculty)
+                .setParameter("department", department)
+                .getSingleResult();
+        return category;
+    }
+    
     // function to update a category. 
     public void updateCategory(Category category)
     {
