@@ -2240,7 +2240,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
 
         jLabel63.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel63.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel63.setText("To delete or edit a book, first select the book then the delete or edit button!");
+        jLabel63.setText("To delete or edit a book, first select the book then the click on the delete or edit button!");
 
         javax.swing.GroupLayout AdminBookListPanelLayout = new javax.swing.GroupLayout(AdminBookListPanel);
         AdminBookListPanel.setLayout(AdminBookListPanelLayout);
@@ -3024,16 +3024,14 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     
     private void showStudentBookList(String faculty, String Dep){
         BookDao bookdao = new BookDao();
-        List<Book> books = bookdao.findAll();
+         List<Book> books = bookdao.searchBooksByParameters("", "", 0, "", categoryDao.findCategory(faculty, Dep));
         DefaultTableModel DTM = (DefaultTableModel) StudentBookTable.getModel();
         DTM.setRowCount(0);
         for (Book book : books) {
-            if(book.getCategoryId().getFaculty().equals(faculty) && book.getCategoryId().getDepartment().equals(Dep)){
                 String[] text = {Long.toString(book.getBookId()), book.getAuthor(), book.getTitle(),
                               book.getIsbn(), book.getEdition(), book.getDescription(),
                               book.getAvailability()};
                 DTM.addRow(text);
-            }
         }  
     }
     
@@ -3104,7 +3102,11 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         String availability = (String) EditBookAvailability.getSelectedItem();
         Book mybook = new Book(selectedIndex_, title, author, isbn, availability);
         BookDao bookdao = new BookDao();
-        bookdao.updateBook(mybook, description, edition, "", categoryId);
+        mybook.setDescription(description);
+        mybook.setEdition(edition);
+        mybook.setImage("");
+        mybook.setCategoryId(categoryId);
+        bookdao.updateBook(mybook);
         JOptionPane.showMessageDialog(null, "Book Modified!");
     }
     
@@ -3259,6 +3261,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         Book book = bookdao.findById(Integer.parseInt(slectedIndex));
         book.setAvailability("Loaned");
         ReceiptDao receiptdao = new ReceiptDao();
+        bookdao.updateBook(book);
         receiptdao.persist((long)0, new Date(), new Date(), 0, book, user);
         JOptionPane.showMessageDialog(null, "Successfully loaned the book!");
         }catch(ArrayIndexOutOfBoundsException e){
