@@ -2996,15 +2996,15 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             role = "student";
         } else if (regRoleAdmin.isSelected()) {
             role = "admin";
-        } // refactored in accodance
+        } 
         String Username = RegUsername.getText();
         String Password = RegPassword.getText();
         String Re_enter_password = RegReEnterpassword.getText();
         if (!"".equals(firstName) && !"".equals(lastName) && !"".equals(Username) && !"".equals(Password)
                 && !"".equals(role)) {
-            if (!(email.contains(UWC_EDOMAIN) && email.split("@")[0].matches("\\d*[1-9]\\d*"))) {
+            if (!(email.contains(UWC_EDOMAIN) && email.split("@")[0].matches("\\d*[1-9]{7,8}\\d*"))) {
                 JOptionPane.showMessageDialog(null, "Invalid UWC email address");
-            } else if (Password != null && Password.equals(Re_enter_password)) {
+            } else if (Password != null && Password.length()>7 && Password.equals(Re_enter_password)) {
                 UserDao userDao = new UserDao();
                 user = new User(Username, firstName, lastName, PassCrypt.hash(Password), email, role, new Date());
                 userDao.persist(user);
