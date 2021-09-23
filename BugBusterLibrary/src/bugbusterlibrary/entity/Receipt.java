@@ -124,7 +124,6 @@ public class Receipt implements Serializable {
 
     /**
      * Checks if a book has been returned
-     * 
      * @return {@code true} if book has been returned otherwise {@code false}
      */
     public boolean isReturned() {
