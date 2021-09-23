@@ -3302,18 +3302,22 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         }
     }
 
-    private void loanBook() {
-        try {
-            String slectedIndex = (String) StudentBookTable.getValueAt(StudentBookTable.getSelectedRow(), 0);
-            BookDao bookdao = new BookDao();
-            Book book = bookdao.findById(Integer.parseInt(slectedIndex));
+    private void loanBook(){
+        try{
+        String slectedIndex = (String) StudentBookTable.getValueAt(StudentBookTable.getSelectedRow(),0);
+        BookDao bookdao = new BookDao();
+        Book book = bookdao.findById(Integer.parseInt(slectedIndex));
+        ReceiptDao receiptdao = new ReceiptDao();
+        if(receiptdao.checkIfReceiptExist(book, user)){
+            JOptionPane.showMessageDialog(null, "Already loaned the book!");
+        }
+        else{
             if (book.getAvailability().equals("Reserved")) {
                 JOptionPane.showMessageDialog(null, "Selected book is Reserved");
             } else if (book.getAvailability().equals("Loaned")) {
                 JOptionPane.showMessageDialog(null, "Select book is already loaned");
             } else {
                 book.setAvailability("Loaned");
-                ReceiptDao receiptdao = new ReceiptDao();
                 bookdao.updateBook(book);
                 Receipt receipt = new Receipt(0L, new Date(), new Date(), 0);
                 receipt.setBookId(book);
@@ -3321,7 +3325,8 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                 receiptdao.persist(receipt);
                 JOptionPane.showMessageDialog(null, "Successfully loaned the book!");
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+        }catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(null, "Select a book first!");
         }
     }
