@@ -61,14 +61,14 @@ public class Book implements Serializable {
     private String availability;
     @Column(name = "image")
     private String image;
+    @Column(name = "remaining")
+    private int remaining;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
     private List<Receipt> receiptList;
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    @ManyToOne(optional = true)
-    private User userId;
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     @ManyToOne(optional = false)
     private Category categoryId;
+    
 
     public Book() {
     }
@@ -158,20 +158,20 @@ public class Book implements Serializable {
         this.receiptList = receiptList;
     }
 
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
-
     public Category getCategoryId() {
         return categoryId;
     }
 
     public void setCategoryId(Category categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public int getRemaining() {
+        return remaining;
+    }
+
+    public void setRemaining(int remaining) {
+        this.remaining = remaining;
     }
 
     /**
