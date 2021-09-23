@@ -2950,7 +2950,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             if(!email.contains(UWC_EDOMAIN)){
                 JOptionPane.showMessageDialog(null, "Email domain not allowed or invalid");
             }
-            else if(Password!=null){
+            else if(Password!=null && Password.equals(Re_enter_password)){
                 UserDao userDao = new UserDao();
                 user = new User(Username, firstName, lastName, PassCrypt.hash(Password), email, role, new Date());
                 userDao.persist(user);
@@ -3219,7 +3219,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             for (Book book : userBooks) {
                 String[] text = {Long.toString(book.getBookId()), book.getAuthor(), book.getTitle(),
                               book.getIsbn(), book.getEdition(), book.getDescription(),
-                              book.getAvailability()};
+                              book.isAvailable() ? "Returned" : book.getAvailability()};
                 DTM.addRow(text);
             } 
         }
@@ -3248,7 +3248,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             for (Receipt receipt : receipts) {
                 Object[] text = {receipt.getReceiptId(), receipt.getUserId().getUserId(), 
                                  receipt.getBookId().getBookId(), receipt.getDateLoaned().toString(), 
-                                 receipt.getDateReturned(), receipt.getFine()};
+                                 receipt.isReturned() ? receipt.getDateReturned(): null, receipt.getFine()};
                 DTM.addRow(text);
             } 
         }
@@ -3259,11 +3259,19 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         String slectedIndex = (String) StudentBookTable.getValueAt(StudentBookTable.getSelectedRow(),0);
         BookDao bookdao = new BookDao();
         Book book = bookdao.findById(Integer.parseInt(slectedIndex));
-        book.setAvailability("Loaned");
-        ReceiptDao receiptdao = new ReceiptDao();
-        bookdao.updateBook(book);
-        receiptdao.persist((long)0, new Date(), new Date(), 0, book, user);
-        JOptionPane.showMessageDialog(null, "Successfully loaned the book!");
+        if(book.getAvailability().equals("Reserved")){
+         JOptionPane.showMessageDialog(null, "Selected book is Reserved");
+        }
+        else if(book.getAvailability().equals("Loaned")){
+         JOptionPane.showMessageDialog(null, "Select book is already loaned");
+        }
+        else{
+            book.setAvailability("Loaned");
+            ReceiptDao receiptdao = new ReceiptDao();
+            bookdao.updateBook(book);
+            receiptdao.persist((long)0, new Date(), new Date(), 0, book, user);
+            JOptionPane.showMessageDialog(null, "Successfully loaned the book!");
+        }
         }catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(null, "Select a book first!");
         }
@@ -3273,15 +3281,18 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         try{
            String slectedIndex = (String) MyBooksTable.getValueAt(MyBooksTable.getSelectedRow(),0); 
            ReceiptDao receiptdao = new ReceiptDao();
+           BookDao bookDao = new BookDao();
            List<Receipt> userReceipts = receiptdao.findUserReceipts(user);
-           Receipt userReceipt = null;
+           Receipt userReceipt = new Receipt();
            for(Receipt receipt : userReceipts){
                if(receipt.getBookId().getBookId() == Long.parseLong(slectedIndex)){
                    userReceipt = receipt;
                }
            }
            userReceipt.setDateReturned(new Date());
-           receiptdao.deleteReceipt(userReceipt.getReceiptId());
+           userReceipt.getBookId().setAvailability("Available");
+           bookDao.updateBook(userReceipt.getBookId());
+           receiptdao.update(userReceipt);
            JOptionPane.showMessageDialog(null, "Book succsessfull returned");
            showUserBooks(user);  
         }catch(ArrayIndexOutOfBoundsException e){
