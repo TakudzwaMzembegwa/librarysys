@@ -174,6 +174,15 @@ public class Book implements Serializable {
         this.categoryId = categoryId;
     }
 
+    /**
+     * Checks if a book is available
+     * 
+     * @return {@code true} if book is available otherwise {@code false}
+     */
+    public boolean isAvailable() {
+        return this.availability.equals("Available");
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
