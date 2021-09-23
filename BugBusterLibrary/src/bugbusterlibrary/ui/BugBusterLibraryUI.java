@@ -3258,16 +3258,20 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         }
     }
 
-    private void showUserBooks(User user) {
+private void showUserBooks(User user) {
         BookDao bookdao = new BookDao();
+        ReceiptDao receiptDao = new ReceiptDao();
+        List<Receipt> receipts = receiptDao.findUserReceipts(user);
         List<Book> userBooks = bookdao.userBooks(user);
         if (userBooks != null) {
             DefaultTableModel DTM = (DefaultTableModel) MyBooksTable.getModel();
             DTM.setRowCount(0);
-            for (Book book : userBooks) {
-                String[] text = { Long.toString(book.getBookId()), book.getAuthor(), book.getTitle(), book.getIsbn(),
-                        book.getEdition(), book.getDescription(),
-                        book.isAvailable() ? "Returned" : book.getAvailability() };
+            Book book;
+            for (Receipt receipt : receipts) {
+                book = receipt.getBookId();
+                String[] text = {Long.toString(book.getBookId()), book.getAuthor(), book.getTitle(),
+                    book.getIsbn(), book.getEdition(), book.getDescription(),
+                    receipt.isReturned() ? "Returned" : "Loaned"};
                 DTM.addRow(text);
             }
         }
@@ -3302,22 +3306,28 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         }
     }
 
-    private void loanBook(){
-        try{
-        String slectedIndex = (String) StudentBookTable.getValueAt(StudentBookTable.getSelectedRow(),0);
-        BookDao bookdao = new BookDao();
-        Book book = bookdao.findById(Integer.parseInt(slectedIndex));
-        ReceiptDao receiptdao = new ReceiptDao();
-        if(receiptdao.checkIfReceiptExist(book, user)){
-            JOptionPane.showMessageDialog(null, "Already loaned the book!");
-        }
-        else{
-            if (book.getAvailability().equals("Reserved")) {
-                JOptionPane.showMessageDialog(null, "Selected book is Reserved");
-            } else if (book.getAvailability().equals("Loaned")) {
-                JOptionPane.showMessageDialog(null, "Select book is already loaned");
+    private void loanBook() {
+        try {
+            String slectedIndex = (String) StudentBookTable.getValueAt(StudentBookTable.getSelectedRow(), 0);
+            BookDao bookdao = new BookDao();
+            ReceiptDao receiptDao = new ReceiptDao();
+            Book book = bookdao.findById(Integer.parseInt(slectedIndex));
+            if (book.getRemaining() == 0) {
+                JOptionPane.showMessageDialog(null, "Book Loaned out");
             } else {
-                book.setAvailability("Loaned");
+                List<Receipt> userReceipts = receiptDao.findUserReceipts(user);
+                Receipt userReceipt = new Receipt();
+                for (Receipt receipt : userReceipts) {
+                    if (receipt.getBookId().equals(book) && !receipt.isReturned()) {
+                        JOptionPane.showMessageDialog(null, "You have already loaned the book");
+                        return;
+                    }
+                }
+                book.setRemaining(book.getRemaining() - 1);
+                if (book.getRemaining() == 0) {
+                    book.setAvailability("Loaned Out");
+                }
+                ReceiptDao receiptdao = new ReceiptDao();
                 bookdao.updateBook(book);
                 Receipt receipt = new Receipt(0L, new Date(), new Date(), 0);
                 receipt.setBookId(book);
@@ -3325,8 +3335,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                 receiptdao.persist(receipt);
                 JOptionPane.showMessageDialog(null, "Successfully loaned the book!");
             }
-        }
-        }catch(ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Select a book first!");
         }
     }
@@ -3343,8 +3352,13 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                     userReceipt = receipt;
                 }
             }
+            if(userReceipt.isReturned()){
+                JOptionPane.showMessageDialog(null, "You have already returned the book!");
+                return;
+            }
             userReceipt.setDateReturned(new Date());
             userReceipt.getBookId().setAvailability("Available");
+            userReceipt.getBookId().setRemaining(userReceipt.getBookId().getRemaining() + 1);
             bookDao.updateBook(userReceipt.getBookId());
             receiptdao.update(userReceipt);
             JOptionPane.showMessageDialog(null, "Book succsessfull returned");
