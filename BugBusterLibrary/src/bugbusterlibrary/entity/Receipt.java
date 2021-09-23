@@ -122,6 +122,15 @@ public class Receipt implements Serializable {
         return fine > 0 ? fine : 0;
     }
 
+    /**
+     * Checks if a book has been returned
+     * 
+     * @return {@code true} if book has been returned otherwise {@code false}
+     */
+    public boolean isReturned() {
+        return !this.dateLoaned.equals(this.dateReturned);
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
