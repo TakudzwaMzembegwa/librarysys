@@ -84,18 +84,12 @@ public class ReceiptDao {
      * Updates a receipt.
      * 
      * @param myReceipt the Receipt object to be updated
-     * @param bookID    the book to be added to the receipt
-     * @param userID    the book to be added to the receipt
      */
-    public void updateReceipt(Receipt myReceipt, Book bookID, User userID) {
-        // set the new values of the receipt.
-        Receipt receipt = myReceipt;
-        receipt.setBookId(bookID);
-        receipt.setUserId(userID);
+    public void update(Receipt myReceipt) {
 
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        em.merge(receipt); // update the receipt.
+        em.merge(myReceipt); // update the receipt.
         em.getTransaction().commit();
     }
 }
