@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 
 /**
@@ -50,12 +51,9 @@ public class ReceiptDao {
 
     /**
      * Adds a receipt to the database
+     * @param receipt
      */
-    public void persist(Long receiptId, Date dateLoaned, Date dateReturned, float fineDue, Book bookId, User userId) {
-        Receipt receipt = new Receipt(receiptId, dateLoaned, dateReturned, fineDue);
-        receipt.setBookId(bookId);
-        receipt.setUserId(userId);
-
+    public void persist(Receipt receipt) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.persist(receipt);
@@ -91,5 +89,24 @@ public class ReceiptDao {
         em.getTransaction().begin();
         em.merge(myReceipt); // update the receipt.
         em.getTransaction().commit();
+    }
+    
+    /**
+     * Checks if a user already loaned a book or not.
+     * 
+     * @param bookId
+     * @param userId
+     * @return true if user already loaned the book
+     */
+    
+    public boolean checkIfReceiptExist(Book bookId, User userId){
+        try{
+            EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
+            Receipt receipt = em.createQuery("SELECT r FROM Receipt r WHERE r.bookId = :bookId AND r.userId = :userId", Receipt.class)
+                    .setParameter("bookId", bookId).setParameter("userId", userId).getSingleResult();
+        }catch(NoResultException e){
+            return false;
+        }
+        return true;
     }
 }

@@ -45,7 +45,10 @@ public class CategoryDao {
         em.close();
     }  
     
-    // function to delete a category. 
+     /**
+     * function to delete a category.
+     * @param categoryId - the ID of the category to be deleted.  
+     */
     public void deleteCategory(Category categoryId) 
     {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
@@ -67,8 +70,11 @@ public class CategoryDao {
                 .getSingleResult();
         return category;
     }
-    
-    // function to update a category. 
+     
+     /**
+     * function to update a category.
+     * @param category - the category to be updated.  
+     */
     public void updateCategory(Category category)
     {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
