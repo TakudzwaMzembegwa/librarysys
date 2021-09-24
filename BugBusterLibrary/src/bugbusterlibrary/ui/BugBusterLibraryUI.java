@@ -3490,7 +3490,7 @@ private void showUserBooks(User user) {
         }
     }
     private boolean adminSecreteKeyConfirmation(){
-        String key = JOptionPane.showInputDialog("Enter amdmin key:");
+        String key = JOptionPane.showInputDialog("Enter admin key:");
         if(key==null || key==""){
         return false;
         }
