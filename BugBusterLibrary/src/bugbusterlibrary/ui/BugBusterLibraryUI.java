@@ -26,7 +26,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 /**
  *
  * @author Sango
@@ -546,6 +545,12 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Re-enter password:");
 
+        RegPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                RegPasswordFocusLost(evt);
+            }
+        });
+
         RegSignUp.setBackground(new java.awt.Color(255, 255, 255));
         RegSignUp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(62, 61, 88)));
 
@@ -625,6 +630,12 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 153));
         jLabel6.setText("CREATE A NEW ACCOUNT");
+
+        regEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                regEmailFocusLost(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("E-mail:");
@@ -1139,6 +1150,14 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        StudentBookTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StudentBookTableMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                StudentBookTableMouseEntered(evt);
+            }
+        });
         jScrollPane6.setViewportView(StudentBookTable);
 
         StudentBookBackButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -1271,6 +1290,14 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
                 "Id", "Author", "Title", "ISBN", "Edition", "Description", "Status"
             }
         ));
+        MyBooksTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MyBooksTableMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MyBooksTableMouseEntered(evt);
+            }
+        });
         jScrollPane5.setViewportView(MyBooksTable);
 
         jLabel68.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -3086,6 +3113,42 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
 
     private void jLabel69MouseClicked(java.awt.event.MouseEvent evt) {                                      
         returnBook();
+    }                                     
+
+    private void StudentBookTableMouseClicked(java.awt.event.MouseEvent evt) {                                              
+        String slectedIndex = (String) StudentBookTable.getValueAt(StudentBookTable.getSelectedRow(), 0);
+        BookDao bookdao = new BookDao();
+        Book book = bookdao.findById(Integer.parseInt(slectedIndex));
+        StudentBookTable.setToolTipText(book.getAuthor()+" - "+book.getTitle()+" : "+book.getDescription());
+    }                                             
+
+    private void StudentBookTableMouseEntered(java.awt.event.MouseEvent evt) {                                              
+        StudentBookTable.setToolTipText("Select book to preview!");
+    }                                             
+
+    private void MyBooksTableMouseClicked(java.awt.event.MouseEvent evt) {                                          
+        String slectedIndex = (String) MyBooksTable.getValueAt(MyBooksTable.getSelectedRow(), 0);
+        BookDao bookdao = new BookDao();
+        Book book = bookdao.findById(Integer.parseInt(slectedIndex));
+        MyBooksTable.setToolTipText(book.getAuthor()+" - "+book.getTitle()+" : "+book.getDescription());
+    }                                         
+
+    private void MyBooksTableMouseEntered(java.awt.event.MouseEvent evt) {                                          
+        MyBooksTable.setToolTipText("Select book to preview!");
+    }                                         
+
+    private void regEmailFocusLost(java.awt.event.FocusEvent evt) {                                   
+        if(!regEmail.getText().contains(UWC_EDOMAIN)){
+            JOptionPane.showMessageDialog(null, "Enter uwc student email!");
+            regEmail.requestFocus();
+        }
+    }                                  
+
+    private void RegPasswordFocusLost(java.awt.event.FocusEvent evt) {                                      
+        if(RegPassword.getText().length()<8){
+            JOptionPane.showMessageDialog(null, "Enter at least 8 characters!");
+            RegPassword.requestFocus();
+        }
     }                                     
     
     private void ButtonEnteredColor(JPanel pane, Color color){
