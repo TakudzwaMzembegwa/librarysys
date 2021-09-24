@@ -3456,6 +3456,8 @@ private void showUserBooks(User user) {
                 receipt.setUserId(user);
                 receiptdao.persist(receipt);
                 JOptionPane.showMessageDialog(null, "Successfully loaned the book!");
+                UserDao userDao = new UserDao();
+                user = user = userDao.findByUsername(LogInUsername.getText());
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Select a book first!");
@@ -3484,6 +3486,8 @@ private void showUserBooks(User user) {
             bookDao.updateBook(userReceipt.getBookId());
             receiptdao.update(userReceipt);
             JOptionPane.showMessageDialog(null, "Book succsessfull returned");
+            UserDao userDao = new UserDao();
+            user = user = userDao.findByUsername(LogInUsername.getText());
             showUserBooks(user);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Select a book first!");
