@@ -29,8 +29,7 @@ public class ReceiptDao {
      */
     public List<Receipt> findAll() {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-        List<Receipt> receipt = em.createQuery("SELECT r FROM Receipt r", Receipt.class).getResultList();
-        return receipt;
+        return em.createQuery("SELECT r FROM Receipt r", Receipt.class).getResultList();
     }
 
     /**
@@ -42,17 +41,16 @@ public class ReceiptDao {
         ArrayList<Receipt> arrReceipt = new ArrayList<>();
         for (Receipt receipt : receipts) {
             if ((long) receipt.getUser().getUser() == user.getUser()) {
-                arrReceipt.add((Receipt) receipt);
+                arrReceipt.add(receipt);
             }
         }
-        List<Receipt> userReceipts = arrReceipt;
-        return userReceipts;
+        return arrReceipt;
     }
 
     /**
-     * Adds a receipt to the database
+     * Adds a receipt to the database.
      * 
-     * @param receipt
+     * @param receipt the new receipt to be persisted
      */
     public void persist(Receipt receipt) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
@@ -95,16 +93,15 @@ public class ReceiptDao {
     /**
      * Checks if a user already loaned a book or not.
      * 
-     * @param book
-     * @param user
+     * @param book the book to filter receipts by
+     * @param user the user to filter receipts by
      * @return true if user already loaned the book
      */
 
     public boolean checkIfReceiptExist(Book book, User user) {
         try {
             EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-            Receipt receipt = em
-                    .createQuery("SELECT r FROM Receipt r WHERE r.book = :book AND r.user = :user", Receipt.class)
+            em.createQuery("SELECT r FROM Receipt r WHERE r.book = :book AND r.user = :user", Receipt.class)
                     .setParameter("book", book).setParameter("user", user).getSingleResult();
         } catch (NoResultException e) {
             return false;
