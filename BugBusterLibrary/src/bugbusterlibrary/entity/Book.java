@@ -63,12 +63,11 @@ public class Book implements Serializable {
     private String image;
     @Column(name = "remaining")
     private int remaining;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
     private List<Receipt> receiptList;
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     @ManyToOne(optional = false)
-    private Category categoryId;
-    
+    private Category category;
 
     public Book() {
     }
@@ -158,12 +157,12 @@ public class Book implements Serializable {
         this.receiptList = receiptList;
     }
 
-    public Category getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Category categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getRemaining() {
@@ -191,7 +190,7 @@ public class Book implements Serializable {
         hash = 79 * hash + Objects.hashCode(this.author);
         hash = 79 * hash + Objects.hashCode(this.isbn);
         hash = 79 * hash + Objects.hashCode(this.edition);
-        hash = 79 * hash + Objects.hashCode(this.categoryId);
+        hash = 79 * hash + Objects.hashCode(this.category);
         return hash;
     }
 
@@ -222,7 +221,7 @@ public class Book implements Serializable {
         if (!Objects.equals(this.bookId, other.bookId)) {
             return false;
         }
-        if (!Objects.equals(this.categoryId, other.categoryId)) {
+        if (!Objects.equals(this.category, other.category)) {
             return false;
         }
         return true;

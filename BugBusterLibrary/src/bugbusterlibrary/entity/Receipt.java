@@ -51,10 +51,10 @@ public class Receipt implements Serializable {
     private Date dateReturned;
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
-    private User userId;
+    private User user;
     @JoinColumn(name = "book_id", referencedColumnName = "book_id")
     @ManyToOne(optional = false)
-    private Book bookId;
+    private Book book;
 
     public Receipt() {
     }
@@ -93,20 +93,20 @@ public class Receipt implements Serializable {
         this.dateReturned = dateReturned;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Book getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookId(Book bookId) {
-        this.bookId = bookId;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     /***
@@ -124,6 +124,7 @@ public class Receipt implements Serializable {
 
     /**
      * Checks if a book has been returned
+     * 
      * @return {@code true} if book has been returned otherwise {@code false}
      */
     public boolean isReturned() {
@@ -136,8 +137,8 @@ public class Receipt implements Serializable {
         hash = 83 * hash + Objects.hashCode(this.receiptId);
         hash = 83 * hash + Objects.hashCode(this.dateLoaned);
         hash = 83 * hash + Objects.hashCode(this.dateReturned);
-        hash = 83 * hash + Objects.hashCode(this.userId);
-        hash = 83 * hash + Objects.hashCode(this.bookId);
+        hash = 83 * hash + Objects.hashCode(this.user);
+        hash = 83 * hash + Objects.hashCode(this.book);
         return hash;
     }
 
@@ -162,10 +163,10 @@ public class Receipt implements Serializable {
         if (!Objects.equals(this.dateReturned, other.dateReturned)) {
             return false;
         }
-        if (!Objects.equals(this.userId, other.userId)) {
+        if (!Objects.equals(this.user, other.user)) {
             return false;
         }
-        if (!Objects.equals(this.bookId, other.bookId)) {
+        if (!Objects.equals(this.book, other.book)) {
             return false;
         }
         return true;

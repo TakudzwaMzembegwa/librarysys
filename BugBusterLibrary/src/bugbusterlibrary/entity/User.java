@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "User", catalog = "sql10433996", schema = "")
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-        @NamedQuery(name = "User.findByUserId", query = "SELECT u FROM User u WHERE u.userId = :userId"),
+        @NamedQuery(name = "User.findByUser", query = "SELECT u FROM User u WHERE u.userId = :userId"),
         @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
         @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
         @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
@@ -70,7 +70,7 @@ public class User implements Serializable {
     @Column(name = "date_joined")
     @Temporal(TemporalType.DATE)
     private Date dateJoined;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Receipt> receiptList;
 
     public User() {
@@ -91,11 +91,11 @@ public class User implements Serializable {
         this.dateJoined = dateJoined;
     }
 
-    public Long getUserId() {
+    public Long getUser() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUser(Long userId) {
         this.userId = userId;
     }
 

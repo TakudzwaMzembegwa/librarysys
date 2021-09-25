@@ -29,11 +29,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "Category", catalog = "sql10433996", schema = "")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
-    , @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId")
-    , @NamedQuery(name = "Category.findByFaculty", query = "SELECT c FROM Category c WHERE c.faculty = :faculty")
-    , @NamedQuery(name = "Category.findByDepartment", query = "SELECT c FROM Category c WHERE c.department = :department")})
+@NamedQueries({ @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
+        @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId"),
+        @NamedQuery(name = "Category.findByFaculty", query = "SELECT c FROM Category c WHERE c.faculty = :faculty"),
+        @NamedQuery(name = "Category.findByDepartment", query = "SELECT c FROM Category c WHERE c.department = :department") })
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,7 +44,7 @@ public class Category implements Serializable {
     private String faculty;
     @Column(name = "department")
     private String department;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Book> bookList;
 
     public Category() {
@@ -125,5 +124,5 @@ public class Category implements Serializable {
     public String toString() {
         return "bugbusterlibrary.entity.Category[ categoryId=" + categoryId + " ]";
     }
-    
+
 }
