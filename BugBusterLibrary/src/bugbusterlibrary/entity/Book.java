@@ -76,12 +76,16 @@ public class Book implements Serializable {
         this.bookId = bookId;
     }
 
-    public Book(Long bookId, String title, String author, String isbn, String availability) {
-        this.bookId = bookId;
+    public Book(String title, String author, String isbn, String description, String edition, String availability,
+            int quantity) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.availability = availability;
+        this.description = description;
+        this.edition = edition;
+        this.remaining = quantity;
+
     }
 
     public Long getBookId() {
