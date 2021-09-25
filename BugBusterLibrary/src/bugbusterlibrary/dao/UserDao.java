@@ -10,8 +10,6 @@ import bugbusterlibrary.entity.Receipt;
 import bugbusterlibrary.entity.User;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
@@ -21,6 +19,8 @@ import javax.persistence.Persistence;
 public class UserDao {
 
     /**
+     * Finds all the code Users in the database
+     * 
      * @return list of all Users
      */
     public List<User> findAll() {

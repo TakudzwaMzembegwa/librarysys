@@ -10,12 +10,9 @@ import bugbusterlibrary.entity.Book;
 import bugbusterlibrary.entity.Receipt;
 import bugbusterlibrary.entity.User;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 
 /**
  *
@@ -25,6 +22,8 @@ import javax.persistence.Persistence;
 public class ReceiptDao {
 
     /**
+     * Finds all the Books in the database
+     * 
      * @return list of all Receipts
      */
     public List<Receipt> findAll() {
@@ -39,11 +38,9 @@ public class ReceiptDao {
     public List<Receipt> findUserReceipts(User user) {
         List<Receipt> receipts = findAll();
         ArrayList<Receipt> arrReceipt = new ArrayList<>();
-        for (Receipt receipt : receipts) {
-            if ((long) receipt.getUser().getUser() == user.getUser()) {
-                arrReceipt.add(receipt);
-            }
-        }
+        receipts.stream().filter((receipt) -> ((long) receipt.getUser().getUser() == user.getUser())).forEachOrdered((receipt) -> {
+            arrReceipt.add(receipt);
+        });
         return arrReceipt;
     }
 

@@ -13,13 +13,7 @@ import bugbusterlibrary.entity.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 /**
  *
  * @author Takudzwa Mzembegwa
@@ -28,6 +22,8 @@ import javax.persistence.criteria.Root;
 public class BookDao {
 
     /**
+     * Finds all the Books in the database
+     * 
      * @return list of all books
      */
     public List<Book> findAll() {
@@ -36,7 +32,7 @@ public class BookDao {
     }
 
     /**
-     * Search book by book id
+     * Finds book by book id
      * 
      * @param id the {@code id} of the book to be found
      * @return book in any was found else {@code null}
@@ -66,16 +62,15 @@ public class BookDao {
      * To search for a book using a set of parameters, defaults can be used to
      * ignore a parameter(s) while making a search.
      * 
-     * @param title        the title you want to search book by: nullable Or ""
-     * @param author       the author you want to search book by: nullable Or ""
-     * @param edition      the edition of the book you want to search for: 0 to
-     *                     exclude it
-     * @param availability the availability of the book you want to search for:
-     *                     nullable Or ""
-     * @param category     the category to search book from: nullable
+     * @param title        the title you want to search book by. Can be {@code null} Or {@code ""}.
+     * @param author       the author you want to search book by. Can be {@code null} Or {@code ""}.
+     * @param edition      the edition of the book you want to search for: Use {@code 0} to
+     *                     exclude it.
+     * @param availability the availability of the book you want to search for. Can be {@code null} Or {@code ""}.
+     * @param category     the category to search book from. Can be {@code null}.
      * 
      * @return {@code List<Book>} A List of book(s) that matches the given
-     *         parameters
+     *         parameters.
      */
     public List<Book> searchBooksByParameters(String title, String author, int edition, String availability,
             Category category) {
@@ -149,9 +144,9 @@ public class BookDao {
         ReceiptDao receiptDao = new ReceiptDao();
         List<Receipt> receipts = receiptDao.findUserReceipts(user);
         List<Book> userBooks = new ArrayList<>();
-        for (Receipt receipt : receipts) {
+        receipts.forEach((receipt) -> {
             userBooks.add(receipt.getBook());
-        }
+        });
         return userBooks;
     }
 
