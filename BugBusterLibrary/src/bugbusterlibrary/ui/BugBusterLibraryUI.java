@@ -138,19 +138,56 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         StudentBookTable = new javax.swing.JTable();
         StudentBookBackButton = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
+        SelectedBookInfo = new javax.swing.JPanel();
+        jLabel94 = new javax.swing.JLabel();
+        jLabel95 = new javax.swing.JLabel();
+        jLabel96 = new javax.swing.JLabel();
+        jLabel97 = new javax.swing.JLabel();
+        jLabel98 = new javax.swing.JLabel();
+        jLabel99 = new javax.swing.JLabel();
+        jLabel100 = new javax.swing.JLabel();
+        selBookTitle = new javax.swing.JLabel();
+        selBookAuthor = new javax.swing.JLabel();
+        selBookISBN = new javax.swing.JLabel();
+        selBookDesc = new javax.swing.JLabel();
+        selBookEdition = new javax.swing.JLabel();
+        selBookAvail = new javax.swing.JLabel();
         LoanBookButton = new javax.swing.JPanel();
         jLabel75 = new javax.swing.JLabel();
-        jSeparator14 = new javax.swing.JSeparator();
-        LoanBookPanel = new javax.swing.JPanel();
+        StudentBookInfoBackButton = new javax.swing.JPanel();
+        jLabel74 = new javax.swing.JLabel();
         MyBooksContent = new javax.swing.JPanel();
+        MyBooksList = new javax.swing.JPanel();
         jLabel67 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         MyBooksTable = new javax.swing.JTable();
-        jLabel68 = new javax.swing.JLabel();
+        SelMyBookInfo = new javax.swing.JPanel();
+        jLabel101 = new javax.swing.JLabel();
+        jLabel102 = new javax.swing.JLabel();
+        jLabel103 = new javax.swing.JLabel();
+        jLabel104 = new javax.swing.JLabel();
+        jLabel105 = new javax.swing.JLabel();
+        jLabel106 = new javax.swing.JLabel();
+        jLabel107 = new javax.swing.JLabel();
+        selMyBookTitle = new javax.swing.JLabel();
+        selBookAuthor1 = new javax.swing.JLabel();
+        selBookISBN1 = new javax.swing.JLabel();
+        selBookDesc1 = new javax.swing.JLabel();
+        selBookEdition1 = new javax.swing.JLabel();
+        selBookAvail1 = new javax.swing.JLabel();
         BookReturnButton = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
-        jSeparator11 = new javax.swing.JSeparator();
+        MyBookInfoBackButton = new javax.swing.JPanel();
+        jLabel108 = new javax.swing.JLabel();
+        jLabel109 = new javax.swing.JLabel();
+        selMyBookDateLoaned = new javax.swing.JLabel();
+        jLabel111 = new javax.swing.JLabel();
+        selMyBookDateReturned = new javax.swing.JLabel();
+        jSeparator14 = new javax.swing.JSeparator();
+        jSeparator16 = new javax.swing.JSeparator();
+        jSeparator17 = new javax.swing.JSeparator();
+        jLabel110 = new javax.swing.JLabel();
+        selBookFine1 = new javax.swing.JLabel();
         AboutContent = new javax.swing.JPanel();
         jLabel78 = new javax.swing.JLabel();
         jSeparator15 = new javax.swing.JSeparator();
@@ -1182,9 +1219,75 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        jLabel74.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel74.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel74.setText("To loan book, first select the book then the loan button!");
+        javax.swing.GroupLayout BooksLayout = new javax.swing.GroupLayout(Books);
+        Books.setLayout(BooksLayout);
+        BooksLayout.setHorizontalGroup(
+            BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BooksLayout.createSequentialGroup()
+                .addContainerGap(557, Short.MAX_VALUE)
+                .addComponent(StudentBookBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
+        BooksLayout.setVerticalGroup(
+            BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BooksLayout.createSequentialGroup()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(StudentBookBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
+        );
+
+        BooksCategoryContent.add(Books, "card3");
+
+        SelectedBookInfo.setBackground(new java.awt.Color(255, 255, 255));
+        SelectedBookInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel94.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel94.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel94.setText("Book Information");
+
+        jLabel95.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel95.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel95.setText("Title:");
+
+        jLabel96.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel96.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel96.setText("Author:");
+
+        jLabel97.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel97.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel97.setText("ISBN:");
+
+        jLabel98.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel98.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel98.setText("Description:");
+
+        jLabel99.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel99.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel99.setText("Edition:");
+
+        jLabel100.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel100.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel100.setText("Availability:");
+
+        selBookTitle.setBackground(new java.awt.Color(62, 61, 88));
+        selBookTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        selBookAuthor.setBackground(new java.awt.Color(62, 61, 88));
+        selBookAuthor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        selBookISBN.setBackground(new java.awt.Color(62, 61, 88));
+        selBookISBN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        selBookDesc.setBackground(new java.awt.Color(62, 61, 88));
+        selBookDesc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        selBookEdition.setBackground(new java.awt.Color(62, 61, 88));
+        selBookEdition.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        selBookAvail.setBackground(new java.awt.Color(62, 61, 88));
+        selBookAvail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         LoanBookButton.setBackground(new java.awt.Color(255, 255, 255));
         LoanBookButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1207,70 +1310,120 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         LoanBookButton.setLayout(LoanBookButtonLayout);
         LoanBookButtonLayout.setHorizontalGroup(
             LoanBookButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel75, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+            .addComponent(jLabel75, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
         );
         LoanBookButtonLayout.setVerticalGroup(
             LoanBookButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel75, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout BooksLayout = new javax.swing.GroupLayout(Books);
-        Books.setLayout(BooksLayout);
-        BooksLayout.setHorizontalGroup(
-            BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BooksLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BooksLayout.createSequentialGroup()
-                        .addComponent(jLabel74)
-                        .addGap(177, 177, 177))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BooksLayout.createSequentialGroup()
-                        .addComponent(StudentBookBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
-            .addGroup(BooksLayout.createSequentialGroup()
-                .addGroup(BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BooksLayout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(BooksLayout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(LoanBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+        StudentBookInfoBackButton.setBackground(new java.awt.Color(255, 255, 255));
+        StudentBookInfoBackButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel74.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/left_arrow_25px.png"))); // NOI18N
+        jLabel74.setText("   Back");
+        jLabel74.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel74MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel74MouseEntered1(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel74MouseExited1(evt);
+            }
+        });
+
+        javax.swing.GroupLayout StudentBookInfoBackButtonLayout = new javax.swing.GroupLayout(StudentBookInfoBackButton);
+        StudentBookInfoBackButton.setLayout(StudentBookInfoBackButtonLayout);
+        StudentBookInfoBackButtonLayout.setHorizontalGroup(
+            StudentBookInfoBackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel74, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
         );
-        BooksLayout.setVerticalGroup(
-            BooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BooksLayout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel74)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(LoanBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(StudentBookBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+        StudentBookInfoBackButtonLayout.setVerticalGroup(
+            StudentBookInfoBackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel74, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        BooksCategoryContent.add(Books, "card3");
-
-        javax.swing.GroupLayout LoanBookPanelLayout = new javax.swing.GroupLayout(LoanBookPanel);
-        LoanBookPanel.setLayout(LoanBookPanelLayout);
-        LoanBookPanelLayout.setHorizontalGroup(
-            LoanBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 679, Short.MAX_VALUE)
+        javax.swing.GroupLayout SelectedBookInfoLayout = new javax.swing.GroupLayout(SelectedBookInfo);
+        SelectedBookInfo.setLayout(SelectedBookInfoLayout);
+        SelectedBookInfoLayout.setHorizontalGroup(
+            SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SelectedBookInfoLayout.createSequentialGroup()
+                .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SelectedBookInfoLayout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(jLabel94))
+                    .addGroup(SelectedBookInfoLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel100, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel99, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel97, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel96, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel95, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel98, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(selBookAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookISBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookEdition, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookAvail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(SelectedBookInfoLayout.createSequentialGroup()
+                                .addComponent(LoanBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                                .addComponent(StudentBookInfoBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(selBookTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(110, 110, 110))
         );
-        LoanBookPanelLayout.setVerticalGroup(
-            LoanBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 538, Short.MAX_VALUE)
+        SelectedBookInfoLayout.setVerticalGroup(
+            SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SelectedBookInfoLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel94)
+                .addGap(53, 53, 53)
+                .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(SelectedBookInfoLayout.createSequentialGroup()
+                        .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(SelectedBookInfoLayout.createSequentialGroup()
+                                .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(SelectedBookInfoLayout.createSequentialGroup()
+                                        .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel95, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(selBookTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel96, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(selBookAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel97, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(selBookISBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(selBookDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel98))
+                                .addGap(18, 18, 18)
+                                .addComponent(selBookEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel99))
+                        .addGap(18, 18, 18)
+                        .addComponent(selBookAvail, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel100))
+                .addGap(56, 56, 56)
+                .addGroup(SelectedBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LoanBookButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StudentBookInfoBackButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
-        BooksCategoryContent.add(LoanBookPanel, "card4");
+        BooksCategoryContent.add(SelectedBookInfo, "card7");
 
         ContentPane.add(BooksCategoryContent, "card2");
 
-        MyBooksContent.setBackground(new java.awt.Color(255, 255, 255));
+        MyBooksContent.setLayout(new java.awt.CardLayout());
+
+        MyBooksList.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel67.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel67.setText("MY BOOKS");
@@ -1293,9 +1446,75 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(MyBooksTable);
 
-        jLabel68.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel68.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel68.setText("To Return book, first select the book then the Return button!");
+        javax.swing.GroupLayout MyBooksListLayout = new javax.swing.GroupLayout(MyBooksList);
+        MyBooksList.setLayout(MyBooksListLayout);
+        MyBooksListLayout.setHorizontalGroup(
+            MyBooksListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MyBooksListLayout.createSequentialGroup()
+                .addGroup(MyBooksListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MyBooksListLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE))
+                    .addGroup(MyBooksListLayout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(jLabel67)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        MyBooksListLayout.setVerticalGroup(
+            MyBooksListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MyBooksListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
+
+        MyBooksContent.add(MyBooksList, "card3");
+
+        SelMyBookInfo.setBackground(new java.awt.Color(255, 255, 255));
+        SelMyBookInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel101.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel101.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel101.setText("BOOK RECEIPT");
+
+        jLabel102.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel102.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel102.setText("Title:");
+
+        jLabel103.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel103.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel103.setText("Author:");
+
+        jLabel104.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel104.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel104.setText("ISBN:");
+
+        jLabel105.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel105.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel105.setText("Description:");
+
+        jLabel106.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel106.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel106.setText("Edition:");
+
+        jLabel107.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel107.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel107.setText("Availability:");
+
+        selMyBookTitle.setBackground(new java.awt.Color(62, 61, 88));
+
+        selBookAuthor1.setBackground(new java.awt.Color(62, 61, 88));
+
+        selBookISBN1.setBackground(new java.awt.Color(62, 61, 88));
+
+        selBookDesc1.setBackground(new java.awt.Color(62, 61, 88));
+
+        selBookEdition1.setBackground(new java.awt.Color(62, 61, 88));
+
+        selBookAvail1.setBackground(new java.awt.Color(62, 61, 88));
 
         BookReturnButton.setBackground(new java.awt.Color(255, 255, 255));
         BookReturnButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1319,58 +1538,165 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         BookReturnButton.setLayout(BookReturnButtonLayout);
         BookReturnButtonLayout.setHorizontalGroup(
             BookReturnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel69, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(jLabel69, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
         );
         BookReturnButtonLayout.setVerticalGroup(
             BookReturnButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel69, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout MyBooksContentLayout = new javax.swing.GroupLayout(MyBooksContent);
-        MyBooksContent.setLayout(MyBooksContentLayout);
-        MyBooksContentLayout.setHorizontalGroup(
-            MyBooksContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MyBooksContentLayout.createSequentialGroup()
-                .addGroup(MyBooksContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MyBooksContentLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane5))
-                    .addGroup(MyBooksContentLayout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jLabel67)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MyBooksContentLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel68)
-                .addGap(158, 158, 158))
-            .addGroup(MyBooksContentLayout.createSequentialGroup()
-                .addGroup(MyBooksContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MyBooksContentLayout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(MyBooksContentLayout.createSequentialGroup()
-                        .addGap(295, 295, 295)
-                        .addComponent(BookReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(138, Short.MAX_VALUE))
+        MyBookInfoBackButton.setBackground(new java.awt.Color(255, 255, 255));
+        MyBookInfoBackButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel108.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel108.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/left_arrow_25px.png"))); // NOI18N
+        jLabel108.setText("   Back");
+        jLabel108.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel108MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel108MouseEntered1(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel108MouseExited1(evt);
+            }
+        });
+
+        javax.swing.GroupLayout MyBookInfoBackButtonLayout = new javax.swing.GroupLayout(MyBookInfoBackButton);
+        MyBookInfoBackButton.setLayout(MyBookInfoBackButtonLayout);
+        MyBookInfoBackButtonLayout.setHorizontalGroup(
+            MyBookInfoBackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel108, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
         );
-        MyBooksContentLayout.setVerticalGroup(
-            MyBooksContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MyBooksContentLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel67)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel68)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BookReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+        MyBookInfoBackButtonLayout.setVerticalGroup(
+            MyBookInfoBackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel108, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        ContentPane.add(MyBooksContent, "card3");
+        jLabel109.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel109.setText("Date Loaned:");
+
+        jLabel111.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel111.setText("Date Returned:");
+
+        jLabel110.setBackground(new java.awt.Color(62, 61, 88));
+        jLabel110.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel110.setText("Fine:");
+
+        javax.swing.GroupLayout SelMyBookInfoLayout = new javax.swing.GroupLayout(SelMyBookInfo);
+        SelMyBookInfo.setLayout(SelMyBookInfoLayout);
+        SelMyBookInfoLayout.setHorizontalGroup(
+            SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SelMyBookInfoLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel109)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selMyBookDateLoaned, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel111)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(selMyBookDateReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelMyBookInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator14)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelMyBookInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator16)
+                .addContainerGap())
+            .addGroup(SelMyBookInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator17)
+                .addContainerGap())
+            .addGroup(SelMyBookInfoLayout.createSequentialGroup()
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SelMyBookInfoLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel107, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel106, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel104, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel103, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel102, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel105, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel110, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(selMyBookTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookAuthor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookISBN1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookDesc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookEdition1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookAvail1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selBookFine1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)))
+                    .addGroup(SelMyBookInfoLayout.createSequentialGroup()
+                        .addGap(247, 247, 247)
+                        .addComponent(jLabel101)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(SelMyBookInfoLayout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(BookReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MyBookInfoBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109))
+        );
+        SelMyBookInfoLayout.setVerticalGroup(
+            SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelMyBookInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel101)
+                .addGap(17, 17, 17)
+                .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel109, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel111, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selMyBookDateLoaned, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selMyBookDateReturned, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel102)
+                    .addComponent(selMyBookTitle))
+                .addGap(18, 18, 18)
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel103)
+                    .addComponent(selBookAuthor1))
+                .addGap(25, 25, 25)
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel104)
+                    .addComponent(selBookISBN1))
+                .addGap(18, 18, 18)
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel105)
+                    .addComponent(selBookDesc1))
+                .addGap(18, 18, 18)
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel106)
+                    .addComponent(selBookEdition1))
+                .addGap(18, 18, 18)
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel107)
+                    .addComponent(selBookAvail1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel110)
+                    .addComponent(selBookFine1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(SelMyBookInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MyBookInfoBackButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BookReturnButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74))
+        );
+
+        MyBooksContent.add(SelMyBookInfo, "card3");
+
+        ContentPane.add(MyBooksContent, "card5");
 
         AboutContent.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -2778,6 +3104,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         MyBooksContent.setVisible(false);
         AboutContent.setVisible(false);
         Books.setVisible(false);
+        SelectedBookInfo.setVisible(false);
         BooksCategoryContent.setVisible(true);
         FacultyAndDep.setVisible(true);
         ListOfDep.setModel(new DefaultListModel());
@@ -2789,6 +3116,8 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         AboutContent.setVisible(false);
         BooksCategoryContent.setVisible(false);
         MyBooksContent.setVisible(true);
+        SelMyBookInfo.setVisible(false);
+        MyBooksList.setVisible(true);
         showUserBooks(user);
     }                                              
 
@@ -3112,7 +3441,11 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         String slectedIndex = (String) StudentBookTable.getValueAt(StudentBookTable.getSelectedRow(), 0);
         BookDao bookdao = new BookDao();
         Book book = bookdao.findById(Integer.parseInt(slectedIndex));
-        StudentBookTable.setToolTipText(book.getAuthor()+" - "+book.getTitle()+" : "+book.getDescription());
+        Books.setVisible(false);
+        SelectedBookInfo.setVisible(true);
+        Books.setVisible(false);
+        SelectedBookInfo.setVisible(true);
+        setbookInfo(book);
     }                                             
 
     private void StudentBookTableMouseEntered(java.awt.event.MouseEvent evt) {                                              
@@ -3121,9 +3454,18 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
 
     private void MyBooksTableMouseClicked(java.awt.event.MouseEvent evt) {                                          
         String slectedIndex = (String) MyBooksTable.getValueAt(MyBooksTable.getSelectedRow(), 0);
-        BookDao bookdao = new BookDao();
-        Book book = bookdao.findById(Integer.parseInt(slectedIndex));
-        MyBooksTable.setToolTipText(book.getAuthor()+" - "+book.getTitle()+" : "+book.getDescription());
+        ReceiptDao receiptdao = new ReceiptDao();
+            BookDao bookDao = new BookDao();
+            List<Receipt> userReceipts = receiptdao.findUserReceipts(user);
+            Receipt userReceipt = new Receipt();
+            for (Receipt receipt : userReceipts) {
+                if (receipt.getBook().getBookId() == Long.parseLong(slectedIndex)) {
+                    userReceipt = receipt;
+                }
+            }
+        MyBooksList.setVisible(false);
+        SelMyBookInfo.setVisible(true);
+        setMybookInfo(userReceipt);
     }                                         
 
     private void MyBooksTableMouseEntered(java.awt.event.MouseEvent evt) {                                          
@@ -3143,6 +3485,32 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             RegPassword.requestFocus();
         }
     }                                     
+
+    private void jLabel74MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        SelectedBookInfo.setVisible(false);
+        Books.setVisible(true);
+    }                                     
+
+    private void jLabel74MouseEntered1(java.awt.event.MouseEvent evt) {                                       
+        ButtonEnteredColor(StudentBookInfoBackButton, new Color(0,153,153));
+    }                                      
+
+    private void jLabel74MouseExited1(java.awt.event.MouseEvent evt) {                                      
+        ButtonEnteredColor(StudentBookInfoBackButton, new Color(255,255,255));
+    }                                     
+
+    private void jLabel108MouseClicked(java.awt.event.MouseEvent evt) {                                       
+        SelMyBookInfo.setVisible(false);
+        MyBooksList.setVisible(true);
+    }                                      
+
+    private void jLabel108MouseEntered1(java.awt.event.MouseEvent evt) {                                        
+        ButtonEnteredColor(MyBookInfoBackButton, new Color(0,153,153));
+    }                                       
+
+    private void jLabel108MouseExited1(java.awt.event.MouseEvent evt) {                                       
+        ButtonEnteredColor(MyBookInfoBackButton, new Color(255,255,255));
+    }                                      
     
     private void ButtonEnteredColor(JPanel pane, Color color){
         pane.setBackground(color);
@@ -3258,6 +3626,29 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             DTM.addRow(text);
         }
     }
+    
+    private void setbookInfo(Book book){
+        selBookTitle.setText(book.getTitle());
+        selBookAuthor.setText(book.getAuthor());
+        selBookISBN.setText(book.getIsbn());
+        selBookDesc.setText(book.getDescription());
+        selBookEdition.setText(book.getEdition());
+        selBookAvail.setText(book.getAvailability());
+    }
+    
+    private void setMybookInfo(Receipt receipt){
+        Book book = receipt.getBook();
+        selMyBookTitle.setText(book.getTitle());
+        selBookAuthor1.setText(book.getAuthor());
+        selBookISBN1.setText(book.getIsbn());
+        selBookDesc1.setText(book.getDescription());
+        selBookEdition1.setText(book.getEdition());
+        String availability = (String) MyBooksTable.getValueAt(MyBooksTable.getSelectedRow(), 6);
+        selBookAvail1.setText(availability);
+        selMyBookDateLoaned.setText(receipt.getDateLoaned().toString());
+        selMyBookDateReturned.setText(availability.equals("Returned")? receipt.getDateReturned().toString(): "");
+        selBookFine1.setText("R"+Double.toString(receipt.getFine()));
+    }
 
     private void AdminCategoryList() {
         DefaultTableModel DTM = (DefaultTableModel) AdminCategoryTable.getModel();
@@ -3359,7 +3750,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     }
 
     private void showCategoryListInEditBook() {
-        BookCategory.removeAllItems();
+        EditBookCategory.removeAllItems();
         CategoryDao category = new CategoryDao();
         List<Category> categorylist = categoryDao.findAll();
         for (int i = 0; i < categorylist.size(); i++) {
@@ -3539,7 +3930,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
             receiptdao.update(userReceipt);
             JOptionPane.showMessageDialog(null, "Book succsessfull returned");
             UserDao userDao = new UserDao();
-            user = user = userDao.findByUsername(LogInUsername.getText());
+            user = userDao.findByUsername(LogInUsername.getText());
             showUserBooks(user);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Select a book first!");
@@ -3660,7 +4051,6 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JPanel HeadNamePane5;
     private javax.swing.JList<String> ListOfDep;
     private javax.swing.JPanel LoanBookButton;
-    private javax.swing.JPanel LoanBookPanel;
     private javax.swing.JPanel LogInButtonPane;
     private javax.swing.JPanel LogInPane;
     private javax.swing.JPasswordField LogInPassword;
@@ -3671,7 +4061,9 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JLabel LogOutButton;
     private javax.swing.JLabel LogOutButton1;
     private javax.swing.JTable MembersTable;
+    private javax.swing.JPanel MyBookInfoBackButton;
     private javax.swing.JPanel MyBooksContent;
+    private javax.swing.JPanel MyBooksList;
     private javax.swing.JPanel MyBooksOption;
     private javax.swing.JLabel MyBooksOptionText;
     private javax.swing.JTable MyBooksTable;
@@ -3688,15 +4080,30 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JPanel RegistrationPane;
     private javax.swing.JTextField SearchBook;
     private javax.swing.JComboBox<String> SearchBy;
+    private javax.swing.JPanel SelMyBookInfo;
+    private javax.swing.JPanel SelectedBookInfo;
     private javax.swing.JPanel SideOptionPane;
     private javax.swing.JPanel StudentBookBackButton;
+    private javax.swing.JPanel StudentBookInfoBackButton;
     private javax.swing.JTable StudentBookTable;
     private javax.swing.JPanel StudentMenuPane;
     private javax.swing.JLabel ToRegister;
     private javax.swing.JLabel UserLoggedInName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel100;
+    private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
+    private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel105;
+    private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -3758,7 +4165,6 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
@@ -3787,6 +4193,12 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
     private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
+    private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -3801,11 +4213,12 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
+    private javax.swing.JSeparator jSeparator16;
+    private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -3817,5 +4230,20 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
     private javax.swing.JTextField regEmail;
     private javax.swing.JRadioButton regRoleAdmin;
     private javax.swing.JRadioButton regRoleStudent;
+    private javax.swing.JLabel selBookAuthor;
+    private javax.swing.JLabel selBookAuthor1;
+    private javax.swing.JLabel selBookAvail;
+    private javax.swing.JLabel selBookAvail1;
+    private javax.swing.JLabel selBookDesc;
+    private javax.swing.JLabel selBookDesc1;
+    private javax.swing.JLabel selBookEdition;
+    private javax.swing.JLabel selBookEdition1;
+    private javax.swing.JLabel selBookFine1;
+    private javax.swing.JLabel selBookISBN;
+    private javax.swing.JLabel selBookISBN1;
+    private javax.swing.JLabel selBookTitle;
+    private javax.swing.JLabel selMyBookDateLoaned;
+    private javax.swing.JLabel selMyBookDateReturned;
+    private javax.swing.JLabel selMyBookTitle;
     // End of variables declaration                   
 }
