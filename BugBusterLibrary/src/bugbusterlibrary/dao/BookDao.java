@@ -122,12 +122,9 @@ public class BookDao {
     /**
      * Function to update a book.
      * 
-     * @param myBook the updated book object to be persisted
+     * @param book the updated book object to be persisted
      */
-    public void updateBook(Book myBook) {
-        // set the updated parameters for the book.
-        Book book = myBook;
-
+    public void updateBook(Book book) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.merge(book); // call to update the book.
