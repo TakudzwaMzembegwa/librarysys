@@ -17,6 +17,7 @@ import javax.crypto.spec.PBEKeySpec;
  * @author Takudzwa Mzembegwa
  */
 public class PassCrypt {
+
     private static final int ITERATIONS = 1000;
     private static final int KEY_LENGTH = 512;
 
@@ -26,7 +27,7 @@ public class PassCrypt {
 
     /**
      * Uses PBKDF2WithHmacSHA1 to encrypt a given password
-     * 
+     *
      * @param password the password to be encrypted
      * @return the encrypted password as a String
      */
@@ -70,15 +71,17 @@ public class PassCrypt {
     }
 
     /**
-     * 
+     * To check whether the a password in correct or not.
+     *
      * @param originalPassword the password before it was encrypted
-     * @param storedPassword   the encrypted password
+     * @param storedPassword the encrypted password
      * @return boolean: true if the passwords were the same before else false
      */
     public static boolean validate(String originalPassword, String storedPassword) {
         String[] parts = storedPassword.split(":");
-        if (parts.length != 2)
+        if (parts.length != 2) {
             return false;
+        }
         byte[] salt = fromHex(parts[0]);
         byte[] hash = fromHex(parts[1]);
 

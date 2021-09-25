@@ -8,12 +8,14 @@ package bugbusterlibrary;
 import bugbusterlibrary.ui.BugBusterLibraryUI;
 
 /**
- *
+ * Used for Library Application initialization.
+ * @author Takudzwa Mzembegwa
  * @author Sango
  */
 public class BugBusterLibrary {
 
     /**
+     * A method to deploy the project.
      * @param args the command line arguments
      */
     public static void main(String[] args) {
