@@ -32,31 +32,29 @@ public class BookDao {
      */
     public List<Book> findAll() {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-        List<Book> books = em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
-        return books;
+        return em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
     }
 
     /**
-     * Search book by book Id
+     * Search book by book id
      * 
-     * @param Id
-     * @return book
+     * @param id the {@code id} of the book to be found
+     * @return book in any was found else {@code null}
      */
-    public Book findById(int Id) {
+    public Book findById(int id) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-        Book book = em.createNamedQuery("Book.findByBookId", Book.class).setParameter("bookId", Id).getSingleResult();
-        return book;
+        return em.createNamedQuery("Book.findByBookId", Book.class).setParameter("bookId", id).getSingleResult();
     }
 
     /**
      * Adds a book in the database
      *
-     * @param book the book to be persisted
+     * @param book     the book to be persisted
      * @param category the category the book belongs to
      */
     public void persist(Book book, Category category) {
         book.setCategory(category);
-        
+
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.persist(book);
@@ -68,7 +66,7 @@ public class BookDao {
      * To search for a book using a set of parameters, defaults can be used to
      * ignore a parameter(s) while making a search.
      * 
-     * @param title        the title you want to search book by: nul lable Or ""
+     * @param title        the title you want to search book by: nullable Or ""
      * @param author       the author you want to search book by: nullable Or ""
      * @param edition      the edition of the book you want to search for: 0 to
      *                     exclude it
@@ -76,7 +74,8 @@ public class BookDao {
      *                     nullable Or ""
      * @param category     the category to search book from: nullable
      * 
-     * @return List<Book> A List of book(s) that matches the given parameters
+     * @return {@code List<Book>} A List of book(s) that matches the given
+     *         parameters
      */
     public List<Book> searchBooksByParameters(String title, String author, int edition, String availability,
             Category category) {
@@ -126,13 +125,9 @@ public class BookDao {
     }
 
     /**
-     * Function to update a book
+     * Function to update a book.
      * 
-     * @param myBook
-     * @param description
-     * @param edition
-     * @param image
-     * @param categoryId
+     * @param myBook the updated book object to be persisted
      */
     public void updateBook(Book myBook) {
         // set the updated parameters for the book.
@@ -147,12 +142,12 @@ public class BookDao {
     /**
      * Finds books loaned by a user
      * 
-     * @param user
-     * @return books
+     * @param user the user whose books should be found
+     * @return books user books found
      */
     public List<Book> userBooks(User user) {
-        ReceiptDao receiptdao = new ReceiptDao();
-        List<Receipt> receipts = receiptdao.findUserReceipts(user);
+        ReceiptDao receiptDao = new ReceiptDao();
+        List<Receipt> receipts = receiptDao.findUserReceipts(user);
         List<Book> userBooks = new ArrayList<>();
         for (Receipt receipt : receipts) {
             userBooks.add(receipt.getBook());
