@@ -3331,7 +3331,7 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         String availability = (String) BookAvailability.getSelectedItem();
         int quantity = Integer.parseInt((String) BookQuantity.getSelectedItem());
         BookDao bookdao = new BookDao();
-        bookdao.persist((long) 0, title, author, isbn, description, edition, "", availability, category, quantity);
+        bookdao.persist(new Book(title, author, isbn, description, edition, availability, quantity), category);
         JOptionPane.showMessageDialog(null, "Book added!");
     }
 
@@ -3367,13 +3367,10 @@ public class BugBusterLibraryUI extends javax.swing.JFrame {
         Category category = categoryDao.findById(EditBookCategory.getSelectedIndex() + 1);
         String availability = (String) EditBookAvailability.getSelectedItem();
         int quantity = Integer.parseInt((String) EditQuantity.getSelectedItem());
-        Book mybook = new Book(selectedIndex_, title, author, isbn, availability);
+        Book mybook = new Book(title, author, isbn, description, edition, availability, quantity);
         BookDao bookdao = new BookDao();
-        mybook.setDescription(description);
-        mybook.setEdition(edition);
-        mybook.setImage("");
+        mybook.setBookId(selectedIndex_);
         mybook.setCategory(category);
-        mybook.setRemaining(quantity);
         bookdao.updateBook(mybook);
         JOptionPane.showMessageDialog(null, "Book Modified!");
     }
