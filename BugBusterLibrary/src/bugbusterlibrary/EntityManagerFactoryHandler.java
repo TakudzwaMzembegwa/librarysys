@@ -16,9 +16,16 @@ public class EntityManagerFactoryHandler {
 
     private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("BugBusterLibraryPU");
 
-    public EntityManagerFactoryHandler() {
+    private EntityManagerFactoryHandler() {
     }
 
+    /**
+     * A method to fetch an already created EntityManagerFactory. Done to reduce
+     * stress on resources that can be done by frequently creating
+     * EntityManagerFactory.
+     * 
+     * @return EntityManagerFactory
+     */
     public static EntityManagerFactory getEntityManagerFactory() {
         return EMF;
     }
