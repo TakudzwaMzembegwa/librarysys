@@ -42,7 +42,6 @@ public class BookDao {
      * @param Id
      * @return book
      */
-
     public Book findById(int Id) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         Book book = em.createNamedQuery("Book.findByBookId", Book.class).setParameter("bookId", Id).getSingleResult();
@@ -53,16 +52,11 @@ public class BookDao {
      * Adds a book in the database
      *
      * @param book the book to be persisted
+     * @param category the category the book belongs to
      */
-    public void persist(Long bookId, String title, String author, String isbn, String description, String edition,
-            String image, String availability, Category category, int quatity) {
-        Book book = new Book(bookId, title, author, isbn, availability);
-        book.setDescription(description);
-        book.setEdition(edition);
-        book.setImage(image);
+    public void persist(Book book, Category category) {
         book.setCategory(category);
-        book.setRemaining(quatity);
-
+        
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.persist(book);
