@@ -11,20 +11,13 @@ import bugbusterlibrary.dao.CategoryDao;
 import bugbusterlibrary.dao.ReceiptDao;
 import bugbusterlibrary.dao.UserDao;
 import java.awt.Color;
-import java.sql.*;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import bugbusterlibrary.entity.*;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
-import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 /**
  *
