@@ -20,78 +20,80 @@ import javax.persistence.Persistence;
  * @author Sango
  */
 public class CreateAndReadDAO {
-    
-    //Return list of all books
-    public List<Book> findAllBooks(){
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
-        EntityManager em=emf.createEntityManager();
+
+    // Return list of all books
+    public List<Book> findAllBooks() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BugBusterLibraryPU");
+        EntityManager em = emf.createEntityManager();
         List<Book> books = em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
         return books;
-    } 
-    
-    //Return list of all Receipts
-    public List<Receipt> findAllReceipts(){
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
-        EntityManager em=emf.createEntityManager();
+    }
+
+    // Return list of all Receipts
+    public List<Receipt> findAllReceipts() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BugBusterLibraryPU");
+        EntityManager em = emf.createEntityManager();
         List<Receipt> receipt = em.createQuery("SELECT r FROM Receipt r", Receipt.class).getResultList();
         return receipt;
-    }  
-    
-    //Return a user's receipt
-    public Receipt UserReceipt(User user){
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
-        EntityManager em=emf.createEntityManager();
-        Receipt userRecepit = em.createQuery("SELECT r FROM Receipt r WHERE r.receiptId = :receiptId", Receipt.class).setParameter("receiptId", user.getUserId()).getSingleResult();
+    }
+
+    // Return a user's receipt
+    public Receipt UserReceipt(User user) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BugBusterLibraryPU");
+        EntityManager em = emf.createEntityManager();
+        Receipt userRecepit = em.createQuery("SELECT r FROM Receipt r WHERE r.receiptId = :receiptId", Receipt.class)
+                .setParameter("receiptId", user.getUser()).getSingleResult();
         return userRecepit;
     }
-    
-    //Return list of Category
-    public List<Category> findAllCategories(){
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
-        EntityManager em=emf.createEntityManager();
+
+    // Return list of Category
+    public List<Category> findAllCategories() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BugBusterLibraryPU");
+        EntityManager em = emf.createEntityManager();
         List<Category> category = em.createQuery("SELECT c FROM Category c", Category.class).getResultList();
         return category;
-    } 
-    
-    //Add a book in the book list
-    public void PushInBook(Long bookId, String title, String author, String isbn, String description, String edition, String image, String availability, Category categoryId){
+    }
+
+    // Add a book in the book list
+    public void PushInBook(Long bookId, String title, String author, String isbn, String description, String edition,
+            String image, String availability, Category category) {
         Book book = new Book(bookId, title, author, isbn, availability);
         book.setDescription(description);
         book.setEdition(edition);
         book.setImage(image);
-        book.setCategoryId(categoryId);
-        
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
-        EntityManager em=emf.createEntityManager();
+        book.setCategory(category);
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BugBusterLibraryPU");
+        EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(book);
         em.getTransaction().commit();
-        em.clear();   
+        em.clear();
     }
-    
-    //Add a receipt in the receipt list
-    public void PushInReceipt(Long receiptId, Date dateLoaned, Date dateReturned, float fineDue, Book bookId, User userId){
+
+    // Add a receipt in the receipt list
+    public void PushInReceipt(Long receiptId, Date dateLoaned, Date dateReturned, float fineDue, Book book, User user) {
         Receipt receipt = new Receipt(receiptId, dateLoaned, dateReturned, fineDue);
-        receipt.setBookId(bookId);
-        receipt.setUserId(userId);
-        
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
-        EntityManager em=emf.createEntityManager();
+        receipt.setBook(book);
+        receipt.setUser(user);
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BugBusterLibraryPU");
+        EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(receipt);
         em.getTransaction().commit();
         em.clear();
     }
-    
-    //Add a category in the category list
+
+    // Add a category in the category list
     public void PushInCategory(Integer categoryId, String faculty, String department) {
         Category category = new Category();
         category.setCategoryId(categoryId);
         category.setFaculty(faculty);
         category.setDepartment(department);
-        
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("BugBusterLibraryPU");  
-        EntityManager em=emf.createEntityManager();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BugBusterLibraryPU");
+        EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(category);
         em.getTransaction().commit();

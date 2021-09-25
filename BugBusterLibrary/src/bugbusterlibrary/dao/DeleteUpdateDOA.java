@@ -11,27 +11,25 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class DeleteUpdateDOA{
-    
-    public void deleteBook(Long bookId) 
-    {
+public class DeleteUpdateDOA {
+
+    public void deleteBook(Long bookId) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         Book book = em.find(Book.class, bookId);
-        
-       if (book != null) {
+
+        if (book != null) {
             em.getTransaction().begin();
             em.remove(book);
             em.getTransaction().commit();
         }
     }
 
-    public void updateBook(Book myBook, String description, String edition, String image, Category categoryId)
-    {
+    public void updateBook(Book myBook, String description, String edition, String image, Category category) {
         Book book = myBook;
         book.setDescription(description);
         book.setEdition(edition);
         book.setImage(image);
-        book.setCategoryId(categoryId);
+        book.setCategory(category);
 
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
@@ -39,65 +37,59 @@ public class DeleteUpdateDOA{
         em.getTransaction().commit();
     }
 
-    public void deleteCategory(Category categoryId) 
-    {
+    public void deleteCategory(Category categoryId) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         Category category = em.find(Category.class, categoryId);
-        
-       if (category != null) {
+
+        if (category != null) {
             em.getTransaction().begin();
             em.remove(category);
             em.getTransaction().commit();
         }
     }
 
-    public void updateCategory(Category category)
-    {
+    public void updateCategory(Category category) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.merge(category);
         em.getTransaction().commit();
     }
-    
-    public void deleteReceipt(Long receiptID) 
-   {
+
+    public void deleteReceipt(Long receiptID) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         Receipt receipt = em.find(Receipt.class, receiptID);
-        
-       if (receipt != null) {
+
+        if (receipt != null) {
             em.getTransaction().begin();
             em.remove(receipt);
             em.getTransaction().commit();
         }
     }
 
-    public void updateReceipt(Receipt myReceipt, Book bookID, User userID)
-    {
-    	Receipt receipt = myReceipt;
-    	receipt.setBookId(bookID);
-    	receipt.setUserId(userID); 
+    public void updateReceipt(Receipt myReceipt, Book bookID, User userID) {
+        Receipt receipt = myReceipt;
+        receipt.setBook(bookID);
+        receipt.setUser(userID);
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.merge(receipt);
         em.getTransaction().commit();
     }
-    
-   public void deleteUser(Long userID) 
-   {
+
+    public void deleteUser(Long userID) {
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         User user = em.find(User.class, userID);
-        
-       if (user != null) {
+
+        if (user != null) {
             em.getTransaction().begin();
             em.remove(user);
             em.getTransaction().commit();
         }
     }
 
-    public void updateUser(User myUser, List<Receipt> receiptList)
-    {
-    	User user = myUser;
-    	user.setReceiptList(receiptList);
+    public void updateUser(User myUser, List<Receipt> receiptList) {
+        User user = myUser;
+        user.setReceiptList(receiptList);
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.merge(user);

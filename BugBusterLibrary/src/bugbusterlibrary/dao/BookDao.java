@@ -35,7 +35,7 @@ public class BookDao {
         List<Book> books = em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
         return books;
     }
-    
+
     /**
      * Search book by book Id
      * 
@@ -55,12 +55,12 @@ public class BookDao {
      * @param book the book to be persisted
      */
     public void persist(Long bookId, String title, String author, String isbn, String description, String edition,
-            String image, String availability, Category categoryId, int quatity) {
+            String image, String availability, Category category, int quatity) {
         Book book = new Book(bookId, title, author, isbn, availability);
         book.setDescription(description);
         book.setEdition(edition);
         book.setImage(image);
-        book.setCategoryId(categoryId);
+        book.setCategory(category);
         book.setRemaining(quatity);
 
         EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
@@ -97,7 +97,7 @@ public class BookDao {
         if (availability != null && !availability.isEmpty())
             sql += "AND b.availability = :availability ";
         if (category != null)
-            sql += "AND b.categoryId = :categoryId";
+            sql += "AND b.category = :category";
 
         Query q = em.createQuery(sql);
 
@@ -110,7 +110,7 @@ public class BookDao {
         if (availability != null && !availability.isEmpty())
             q.setParameter("availability", availability);
         if (category != null)
-            q.setParameter("categoryId", category);
+            q.setParameter("category", category);
         return q.getResultList();
     }
 
@@ -149,19 +149,19 @@ public class BookDao {
         em.merge(book); // call to update the book.
         em.getTransaction().commit();
     }
-    
+
     /**
      * Finds books loaned by a user
      * 
      * @param user
-     * @return  books
+     * @return books
      */
-    public List<Book> userBooks(User user){
+    public List<Book> userBooks(User user) {
         ReceiptDao receiptdao = new ReceiptDao();
         List<Receipt> receipts = receiptdao.findUserReceipts(user);
         List<Book> userBooks = new ArrayList<>();
-        for(Receipt receipt : receipts){
-            userBooks.add( receipt.getBookId());
+        for (Receipt receipt : receipts) {
+            userBooks.add(receipt.getBook());
         }
         return userBooks;
     }

@@ -40,8 +40,8 @@ public class ReceiptDao {
     public List<Receipt> findUserReceipts(User user) {
         List<Receipt> receipts = findAll();
         ArrayList<Receipt> arrReceipt = new ArrayList<>();
-        for(Receipt receipt : receipts){
-            if((long)receipt.getUserId().getUserId() == user.getUserId()){
+        for (Receipt receipt : receipts) {
+            if ((long) receipt.getUser().getUser() == user.getUser()) {
                 arrReceipt.add((Receipt) receipt);
             }
         }
@@ -51,6 +51,7 @@ public class ReceiptDao {
 
     /**
      * Adds a receipt to the database
+     * 
      * @param receipt
      */
     public void persist(Receipt receipt) {
@@ -90,21 +91,22 @@ public class ReceiptDao {
         em.merge(myReceipt); // update the receipt.
         em.getTransaction().commit();
     }
-    
+
     /**
      * Checks if a user already loaned a book or not.
      * 
-     * @param bookId
-     * @param userId
+     * @param book
+     * @param user
      * @return true if user already loaned the book
      */
-    
-    public boolean checkIfReceiptExist(Book bookId, User userId){
-        try{
+
+    public boolean checkIfReceiptExist(Book book, User user) {
+        try {
             EntityManager em = EntityManagerFactoryHandler.getEntityManagerFactory().createEntityManager();
-            Receipt receipt = em.createQuery("SELECT r FROM Receipt r WHERE r.bookId = :bookId AND r.userId = :userId", Receipt.class)
-                    .setParameter("bookId", bookId).setParameter("userId", userId).getSingleResult();
-        }catch(NoResultException e){
+            Receipt receipt = em
+                    .createQuery("SELECT r FROM Receipt r WHERE r.book = :book AND r.user = :user", Receipt.class)
+                    .setParameter("book", book).setParameter("user", user).getSingleResult();
+        } catch (NoResultException e) {
             return false;
         }
         return true;
